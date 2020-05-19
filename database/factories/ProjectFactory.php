@@ -23,8 +23,7 @@ $factory->define(App\Project::class, function (Faker $faker) {
         'programmer' => $faker->name(),
         'project_manager' => $faker->name(),
         'detail' => $faker->word(1),
-        'info' => $faker->word(1),
-        'status' => array_rand(array('Inaktiv'=>'Inaktiv', 'Aktiv' => 'Aktiv')),
+        'status' => array_rand(array('Kick-Off'=>'Kick-Off', 'Programmierung' => 'Programmierung', 'TL bei PL' => 'TL bei PL', 'Im Feld' => 'Im Feld')),
 
     ];
 });

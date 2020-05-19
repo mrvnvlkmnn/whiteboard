@@ -12,18 +12,20 @@ use App\Project;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+/*
 Route::get('/', function () {
     return view('welcome');
 });
+*/
 
 Route::resource('projects', 'ProjectController');
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
 
 Route::post('/projectSearch', 'SearchController@index');
+
+Route::post('/sortBy', 'SearchController@index');
 
 Route::post('/softDelete', 'SearchController@softDelete');
 

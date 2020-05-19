@@ -22,21 +22,55 @@ class SearchController extends Controller
                 ->orWhere('programmer', 'LIKE', $searchQuery)
                 ->orWhere('project_manager', 'LIKE', $searchQuery)
                 ->orWhere('detail', 'LIKE', $searchQuery)
-                ->orWhere('info', 'LIKE', $searchQuery)
                 ->orWhere('deleted_at', '=', 'NULL');
         });
 
+        //$sql = $sql->orderBy('survey_number', 'asc');
 
         if ($request->filterQuery !== "Alle") {
-            if ($request->filterQuery !== "Gelöscht"){
-                $sql = $sql->where('status', '=', $request->filterQuery);
-            }else{
-                $sql = Project::onlyTrashed();
-            }
-
+            $sql = $sql->where('status', '=', $request->filterQuery);
         }
 
+        switch($request->tableNumber){
+            case 1:
+                $sql = $sql->orderBy('survey_number', 'asc');
+            case 2:
+                $sql = $sql->orderBy('survey_number', 'desc');
+            case 3:
+                $sql = $sql->orderBy('programmer', 'asc');
+            case 4:
+                $sql = $sql->orderBy('programmer', 'desc');
+            case 5:
+                $sql = $sql->orderBy('project_manager', 'asc');
+            case 6:
+                $sql = $sql->orderBy('project_manager', 'desc');
+            case 7:
+                $sql = $sql->orderBy('detail', 'asc');
+            case 8:
+                $sql = $sql->orderBy('detail', 'desc');
+            case 9:
+                $sql = $sql->orderBy('status', 'asc');
+            case 10:
+                $sql = $sql->orderBy('status', 'desc');
+        }
+
+        /*
+        if ($request->tableNumber == 1) {
+            $sql = $sql->orderBy('survey_number', 'asc');
+        }elseif($request->tableNumber == 2) {
+            $sql = $sql->orderBy('programmer', 'asc');
+        }elseif($request->tableNumber == 3) {
+            $sql = $sql->orderBy('project_manager', 'asc');
+        }elseif($request->tableNumber == 4) {
+            $sql = $sql->orderBy('detail', 'asc');
+        }elseif($request->tableNumber == 5) {
+            $sql = $sql->orderBy('status', 'asc');
+        }
+        */
+
         return $sql->get();
+
+
         /*
         return Project::where('survey_number', 'LIKE', $searchQuery)
             ->orWhere('programmer', 'LIKE', $searchQuery)

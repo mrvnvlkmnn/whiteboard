@@ -49,7 +49,6 @@ class ProjectController extends Controller
             'programmer'        => 'required',
             'project_manager'   => 'required',
             'detail'            => 'required',
-            'info'              => 'required',
             'status'            => 'required',
         ]);
 
@@ -82,6 +81,9 @@ class ProjectController extends Controller
      */
     public function edit(Project $project)
     {
+        $project->programmer = preg_split('/,/', $project->programmer);
+        $project->project_manager = preg_split('/,/', $project->project_manager);
+
         return view('projects.edit',compact('project'));
     }
 
@@ -94,13 +96,15 @@ class ProjectController extends Controller
      */
     public function update(Request $request, Project $project)
     {
+
+
+
         // php artisan make:request StoreBlogPost (auslagerung von Validierung im Controller)
         $request->validate([
             'survey_number'     => 'required|unique:projects,survey_number,' . $project->id . '|max:10',
             'programmer'        => 'required',
             'project_manager'   => 'required',
             'detail'            => 'required',
-            'info'              => 'required',
             'status'            => 'required',
         ]);
 

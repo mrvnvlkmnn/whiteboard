@@ -33,3 +33,10 @@ Vue.component('search-bar', require('./components/search.vue').default);
 const app = new Vue({
     el: '#app',
 });
+
+$(document).ready(function() {
+    $('.select2').select2({
+        theme: 'bootstrap4',
+    });
+});
+
