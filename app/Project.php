@@ -14,6 +14,7 @@ class Project extends Model
         'programmer',
         'project_manager',
         'detail',
+        'feldstart',
         'status'
     ];
 

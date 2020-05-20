@@ -1971,6 +1971,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -1984,6 +1986,11 @@ __webpack_require__.r(__webpack_exports__);
   },
   created: function created() {
     this.searchIt();
+  },
+  filters: {
+    dateFormat: function dateFormat(value) {
+      return value.split("-").reverse().join(".");
+    }
   },
   watch: {
     filterQuery: function filterQuery() {
@@ -37679,62 +37686,75 @@ var render = function() {
       [
         _vm._m(0),
         _vm._v(" "),
-        _c("div", { staticClass: "col-lg-6 margin-tb" }, [
-          _vm._m(1),
-          _vm._v(" "),
-          _c("div", { staticClass: "pull-right" }, [
-            _c("div", { staticStyle: { width: "175px" } }, [
-              _c(
-                "select",
-                {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.filterQuery,
-                      expression: "filterQuery"
+        _c(
+          "div",
+          {
+            staticClass: "col-lg-6 margin-tb",
+            staticStyle: {
+              display: "flex",
+              "flex-direction": "column",
+              "align-items": "flex-end"
+            }
+          },
+          [
+            _vm._m(1),
+            _vm._v(" "),
+            _c("div", [
+              _c("div", { staticStyle: { width: "175px" } }, [
+                _c(
+                  "select",
+                  {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.filterQuery,
+                        expression: "filterQuery"
+                      }
+                    ],
+                    staticClass: "custom-select",
+                    on: {
+                      change: function($event) {
+                        var $$selectedVal = Array.prototype.filter
+                          .call($event.target.options, function(o) {
+                            return o.selected
+                          })
+                          .map(function(o) {
+                            var val = "_value" in o ? o._value : o.value
+                            return val
+                          })
+                        _vm.filterQuery = $event.target.multiple
+                          ? $$selectedVal
+                          : $$selectedVal[0]
+                      }
                     }
-                  ],
-                  staticClass: "custom-select",
-                  on: {
-                    change: function($event) {
-                      var $$selectedVal = Array.prototype.filter
-                        .call($event.target.options, function(o) {
-                          return o.selected
-                        })
-                        .map(function(o) {
-                          var val = "_value" in o ? o._value : o.value
-                          return val
-                        })
-                      _vm.filterQuery = $event.target.multiple
-                        ? $$selectedVal
-                        : $$selectedVal[0]
-                    }
-                  }
-                },
-                [
-                  _c("option", { attrs: { value: "Alle" } }, [_vm._v("Alle")]),
-                  _vm._v(" "),
-                  _c("option", { attrs: { value: "Kick-Off" } }, [
-                    _vm._v("Kick-Off")
-                  ]),
-                  _vm._v(" "),
-                  _c("option", { attrs: { value: "Programmierung" } }, [
-                    _vm._v("Programmierung")
-                  ]),
-                  _vm._v(" "),
-                  _c("option", { attrs: { value: "TL bei PL" } }, [
-                    _vm._v("TL bei PL")
-                  ]),
-                  _vm._v(" "),
-                  _c("option", { attrs: { value: "Im Feld" } }, [
-                    _vm._v("Im Feld")
-                  ])
-                ]
-              )
+                  },
+                  [
+                    _c("option", { attrs: { value: "Alle" } }, [
+                      _vm._v("Alle")
+                    ]),
+                    _vm._v(" "),
+                    _c("option", { attrs: { value: "Kick-Off" } }, [
+                      _vm._v("Kick-Off")
+                    ]),
+                    _vm._v(" "),
+                    _c("option", { attrs: { value: "Programmierung" } }, [
+                      _vm._v("Programmierung")
+                    ]),
+                    _vm._v(" "),
+                    _c("option", { attrs: { value: "TL bei PL" } }, [
+                      _vm._v("TL bei PL")
+                    ]),
+                    _vm._v(" "),
+                    _c("option", { attrs: { value: "Im Feld" } }, [
+                      _vm._v("Im Feld")
+                    ])
+                  ]
+                )
+              ])
             ])
-          ])
-        ])
+          ]
+        )
       ]
     ),
     _vm._v(" "),
@@ -37752,6 +37772,7 @@ var render = function() {
           staticClass: "form-control",
           attrs: {
             type: "text",
+            placeholder: "Suche nach einer Studie!",
             name: "search",
             "aria-label": "Search",
             "aria-describedby": "basic-addon1"
@@ -37944,8 +37965,8 @@ var render = function() {
               )
             ]),
             _vm._v(" "),
-            _c("th", [
-              _vm._v("Status "),
+            _c("th", { attrs: { width: "250px" } }, [
+              _vm._v("Feldstart "),
               _c(
                 "a",
                 {
@@ -37986,7 +38007,7 @@ var render = function() {
               )
             ]),
             _vm._v(" "),
-            _c("th", [_vm._v("Actions")])
+            _c("th", { attrs: { colspan: "2" } }, [_vm._v("Status ")])
           ]),
           _vm._v(" "),
           _vm._l(_vm.surveys, function(survey) {
@@ -37998,6 +38019,10 @@ var render = function() {
               _c("td", [_vm._v(_vm._s(survey.project_manager))]),
               _vm._v(" "),
               _c("td", [_vm._v(_vm._s(survey.detail))]),
+              _vm._v(" "),
+              _c("td", [
+                _vm._v(_vm._s(_vm._f("dateFormat")(survey.feldstart)))
+              ]),
               _vm._v(" "),
               _c("td", [_vm._v(_vm._s(survey.status))]),
               _vm._v(" "),
@@ -38080,7 +38105,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "col-lg-6 margin-tb" }, [
-      _c("div", { staticClass: "pull-left" }, [_c("h3", [_vm._v("Projects")])]),
+      _c("div", { staticClass: "pull-left" }, [_c("h3", [_vm._v("Projekte")])]),
       _vm._v(" "),
       _c("div", { staticClass: "pull-right" }, [
         _c(
@@ -38098,9 +38123,7 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "pull-right" }, [
-      _c("h3", [_vm._v("Filter")])
-    ])
+    return _c("div", [_c("h3", [_vm._v("Filter")])])
   }
 ]
 render._withStripped = true

@@ -39,4 +39,3 @@ $(document).ready(function() {
         theme: 'bootstrap4',
     });
 });
-

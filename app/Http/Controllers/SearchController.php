@@ -49,9 +49,9 @@ class SearchController extends Controller
             case 8:
                 $sql = $sql->orderBy('detail', 'desc');
             case 9:
-                $sql = $sql->orderBy('status', 'asc');
+                $sql = $sql->orderBy('feldstart', 'asc');
             case 10:
-                $sql = $sql->orderBy('status', 'desc');
+                $sql = $sql->orderBy('feldstart', 'desc');
         }
 
         /*

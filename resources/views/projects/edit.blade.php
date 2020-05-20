@@ -4,7 +4,7 @@
     <div class="row" style="margin-bottom: 20px;">
         <div class="col-lg-12 margin-tb">
             <div class="pull-left">
-                <h3>Edit Project</h3>
+                <h3>Projekt bearbeiten</h3>
             </div>
         </div>
     </div>
@@ -57,6 +57,14 @@
                     <textarea class="form-control" style="height:75px" name="detail">{{ $project->detail }}</textarea>
                 </div>
             </div>
+
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="form-group">
+                    <strong>geplanter Feldstart:</strong>
+                    <input class="form-control" type="date" name="feldstart" value="{{ old('feldstart', $project->feldstart) }}">
+                </div>
+            </div>
+
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <strong>Status:</strong>
@@ -69,7 +77,7 @@
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-                <button type="submit" class="btn btn-success">Update</button>
+                <button type="submit" class="btn btn-success">Speichern</button>
             </div>
         </div>
 

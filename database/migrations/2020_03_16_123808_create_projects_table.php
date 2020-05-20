@@ -19,7 +19,7 @@ class CreateProjectsTable extends Migration
             $table->string('programmer');
             $table->string('project_manager');
             $table->text('detail');
-            $table->text('info');
+            $table->date('feldstart');
             $table->text('status');
             $table->timestamps();
             $table->softDeletes();

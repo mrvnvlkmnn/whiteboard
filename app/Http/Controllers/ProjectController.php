@@ -49,6 +49,7 @@ class ProjectController extends Controller
             'programmer'        => 'required',
             'project_manager'   => 'required',
             'detail'            => 'required',
+            'feldstart'         => 'required',
             'status'            => 'required',
         ]);
 
@@ -105,6 +106,7 @@ class ProjectController extends Controller
             'programmer'        => 'required',
             'project_manager'   => 'required',
             'detail'            => 'required',
+            'feldstart'            => 'required',
             'status'            => 'required',
         ]);
 
