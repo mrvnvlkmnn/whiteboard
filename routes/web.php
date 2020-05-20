@@ -13,8 +13,6 @@ use App\Project;
 |
 */
 
-Route::redirect('/', '/projects');
-
 
 Route::resource('projects', 'ProjectController');
 
@@ -28,6 +26,7 @@ Route::post('/sortBy', 'SearchController@index');
 Route::post('/softDelete', 'SearchController@softDelete');
 
 
+Route::redirect('/', route("projects.index"));
 
 
 
