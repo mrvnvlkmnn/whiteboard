@@ -12,11 +12,9 @@ use App\Project;
 | contains the "web" middleware group. Now create something great!
 |
 */
-/*
-Route::get('/', function () {
-    return view('welcome');
-});
-*/
+
+Route::redirect('/', '/projects');
+
 
 Route::resource('projects', 'ProjectController');
 
