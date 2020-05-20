@@ -6,10 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Whiteboard</title>
     <!-- Bootstrap CSS -->
-    <link href="/css/app.css" rel="stylesheet">
+    <link href="{{ asset("css/app.css") }}" rel="stylesheet">
     <!-- Select2 CSS and JS -->
     <link href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" rel="stylesheet">
-    <script src="/js/app.js" defer></script>
+    <script src="{{ asset("js/app.js") }}" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js" defer></script>
 
 </head>
