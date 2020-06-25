@@ -18,7 +18,7 @@
 <div id="app" class="container" style="max-width: 1500px">
 
     <div class="text-center" style="margin: 50px 0 50px 0;"><a href="{{url("projects")}}"><img
-                src="{{asset("images/eae_logo.png")}}" width="1110px" alt="Logo"></a>
+                src="{{asset("images/eae_logo.png")}}" width="750px" alt="Logo"></a>
                 <br>
                 Whiteboard
     </div>
