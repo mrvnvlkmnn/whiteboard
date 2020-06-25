@@ -23,6 +23,7 @@ window.Vue = require('vue');
 
 
 Vue.component('search-bar', require('./components/search.vue').default);
+Vue.component('modal', require('./components/modal.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
