@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreProjectRequest;
+use App\Http\Requests\UpdateProjectRequest;
 use App\Project;
 use Illuminate\Http\Request;
 
@@ -38,20 +40,13 @@ class ProjectController extends Controller
     /**
      * Store a newly created resource in storage
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\StoreProjectRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreProjectRequest $request)
     {
 
-        $request->validate([
-            'survey_number'     => 'required|unique:projects|max:10',
-            'programmer'        => 'required',
-            'project_manager'   => 'required',
-            'detail'            => 'required',
-            'info'              => 'required',
-            'status'            => 'required',
-        ]);
+        $request->validated();
 
         $all = $request->all();
         $all['programmer'] = implode(',', $all['programmer']);
@@ -60,7 +55,7 @@ class ProjectController extends Controller
         Project::create($all);
 
         return redirect()->route('projects.index')
-                        ->with('sucess','Project created sucessfully.');
+                        ->with('Erfolgreich!','Projekt wurde erfolgreich erstellt.');
     }
 
     /**
@@ -82,27 +77,25 @@ class ProjectController extends Controller
      */
     public function edit(Project $project)
     {
+        $project->programmer = preg_split('/,/', $project->programmer);
+        $project->project_manager = preg_split('/,/', $project->project_manager);
+
         return view('projects.edit',compact('project'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\StoreProjectRequest  $request
      * @param  \App\Project  $project
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Project $project)
+    public function update(Project $project, UpdateProjectRequest $request)
     {
+
+
         // php artisan make:request StoreBlogPost (auslagerung von Validierung im Controller)
-        $request->validate([
-            'survey_number'     => 'required|unique:projects,survey_number,' . $project->id . '|max:10',
-            'programmer'        => 'required',
-            'project_manager'   => 'required',
-            'detail'            => 'required',
-            'info'              => 'required',
-            'status'            => 'required',
-        ]);
+        $request->validated();
 
         $all = $request->all();
         $all['programmer'] = implode(',', $all['programmer']);
@@ -111,7 +104,7 @@ class ProjectController extends Controller
         $project->update($all);
 
         return redirect()->route('projects.index')
-                        ->with('success','Project updated successfully');
+                        ->with('Erfolgreich!','Projekt wurde erfolgreich aktualisiert.');
     }
 
     /**
@@ -125,7 +118,7 @@ class ProjectController extends Controller
         $project->delete();
 
         return redirect()->route('projects.index')
-                        ->with('success','Project deleted successfully');
+            ->with('Erfolgreich!', 'Projekt wurde erfolgreich gelöscht.');
     }
 
 

@@ -8,7 +8,6 @@
         </div>
     @endif
 
-
     <search-bar></search-bar>
 
 @endsection

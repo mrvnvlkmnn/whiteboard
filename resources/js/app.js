@@ -23,6 +23,7 @@ window.Vue = require('vue');
 
 
 Vue.component('search-bar', require('./components/search.vue').default);
+Vue.component('modal', require('./components/modal.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -32,4 +33,10 @@ Vue.component('search-bar', require('./components/search.vue').default);
 
 const app = new Vue({
     el: '#app',
+});
+
+$(document).ready(function() {
+    $('.select2').select2({
+        theme: 'bootstrap4',
+    });
 });
