@@ -3,7 +3,7 @@
 @section('content')
     <div class="text-row" style="margin-bottom: 20px;">
         <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
+            <div class="form-group" style="display: flex; justify-content: center">
                 <h3>Projekt bearbeiten</h3>
             </div>
         </div>
@@ -25,15 +25,15 @@
         @method('PUT')
 
         <div class="row">
-            <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="col-xs-12 col-sm-12 col-md-12 createInput">
                 <div class="form-group">
                     <label>
                         <strong>Studien-Nummer:</strong>
-                        <input type="text" name="survey_number" value="{{ $project->survey_number }}" class="form-control">
+                        <input type="text" name="survey_number" value="{{ $project->survey_number }}" class="form-control" style="width: 500px;">
                     </label>
                 </div>
             </div>
-            <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="col-xs-12 col-sm-12 col-md-12 createInput">
                 <div class="form-group">
                     <strong>Programmierer:</strong>
                     <br>
@@ -46,7 +46,7 @@
                     </label>
                 </div>
             </div>
-            <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="col-xs-12 col-sm-12 col-md-12 createInput">
                 <div class="form-group">
                     <strong>Projektleiter:</strong>
                     <br>
@@ -59,7 +59,7 @@
                     </label>
                 </div>
             </div>
-            <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="col-xs-12 col-sm-12 col-md-12 createInput">
                 <div class="form-group">
                     <label style="width: 500px">
                         <strong>Detail:</strong>
@@ -68,16 +68,16 @@
                 </div>
             </div>
 
-            <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="col-xs-12 col-sm-12 col-md-12 createInput">
                 <div class="form-group">
                     <label>
                         <strong>geplanter Feldstart:</strong>
-                        <input class="form-control" type="date" name="feldstart" value="{{ old('feldstart', $project->feldstart) }}">
+                        <input class="form-control" type="date" name="feldstart" value="{{ old('feldstart', $project->feldstart) }}" style="width: 500px;">
                     </label>
                 </div>
             </div>
 
-            <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="col-xs-12 col-sm-12 col-md-12 createInput">
                 <div class="form-group">
                     <strong>Status:</strong>
                     <br>

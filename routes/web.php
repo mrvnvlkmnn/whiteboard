@@ -18,6 +18,8 @@ Route::resource('projects', 'ProjectController');
 
 Auth::routes();
 
+Route::get('/sendMail', 'MailController@show');
+Route::post('/sendMail', 'MailController@sendMail');
 
 Route::post('/projectSearch', 'SearchController@index');
 

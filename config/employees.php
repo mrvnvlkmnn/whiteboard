@@ -11,6 +11,14 @@ return [
         'unknown' => 'IT'
     ],
 
+    'mailsIT' => [
+        'AG@earsandeyes.com' => 'Antje Groth',
+        'DS@earsandeyes.com' => 'Dennis Silberbach',
+        'MV@earsandeyes.com' => 'Marvin Volkmann',
+        'MY@earsandeyes.com' => 'Mawlid Yussuf',
+        'NS@earsandeyes.com' => 'Nico Sorgenfrei',
+        'IT@earsandeyes.com' => 'Alle'
+    ],
 
     'project_manager' => [
         'AN' => 'Adrian Neumann',
