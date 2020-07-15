@@ -6630,7 +6630,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.modal-mask[data-v-478d961c] {\n    position: fixed;\n    z-index: 9998;\n    top: 0;\n    left: 0;\n    width: 100%;\n    height: 100%;\n    background-color: rgba(0, 0, 0, 0.5);\n    display: table;\n    transition: opacity 0.3s ease;\n}\n.modal-wrapper[data-v-478d961c] {\n    display: table-cell;\n    vertical-align: middle;\n}\n.modal-container[data-v-478d961c] {\n    width: 550px;\n    margin: 0px auto;\n    padding: 20px 30px;\n    background-color: #fff;\n    border-radius: 2px;\n    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);\n    transition: all 0.3s ease;\n    font-family: Helvetica, Arial, sans-serif;\n}\n.modal-header h3[data-v-478d961c] {\n    margin-top: 0;\n    color: #42b983;\n}\n.modal-body[data-v-478d961c] {\n    margin: 20px 0;\n}\n.modal-default-button-yes[data-v-478d961c] {\n    float: right;\n    background-color: lightgreen;\n}\n.modal-default-button-no[data-v-478d961c] {\n    float: right;\n    background-color: lightcoral;\n}\n.modal-enter[data-v-478d961c] {\n    opacity: 0;\n}\n.modal-leave-active[data-v-478d961c] {\n    opacity: 0;\n}\n.modal-enter .modal-container[data-v-478d961c],\n.modal-leave-active .modal-container[data-v-478d961c] {\n    transform: scale(1.1);\n}\n", ""]);
+exports.push([module.i, "\n.modal-mask[data-v-478d961c] {\n    position: fixed;\n    z-index: 9998;\n    top: 0;\n    left: 0;\n    width: 100%;\n    height: 100%;\n    background-color: rgba(0, 0, 0, 0.5);\n    display: table;\n    transition: opacity 0.3s ease;\n}\n.modal-wrapper[data-v-478d961c] {\n    display: table-cell;\n    vertical-align: middle;\n}\n.modal-container[data-v-478d961c] {\n    width: 550px;\n    margin: 0px auto;\n    padding: 20px 30px;\n    background-color: #fff;\n    border-radius: 2px;\n    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);\n    transition: all 0.3s ease;\n    font-family: Helvetica, Arial, sans-serif;\n}\n.modal-header h3[data-v-478d961c] {\n    margin-top: 0;\n    color: #42b983;\n}\n.modal-body[data-v-478d961c] {\n    margin: 20px 0;\n}\n.modal-default-button-yes[data-v-478d961c] {\n    -webkit-text-size-adjust: none;\n    border-radius: 4px;\n    color: #fff;\n    display: inline-block;\n    overflow: hidden;\n    text-decoration: none;\n\n    background-color: #48bb78;\n    border-bottom: 8px solid #48bb78;\n    border-left: 18px solid #48bb78;\n    border-right: 18px solid #48bb78;\n    border-top: 8px solid #48bb78;\n}\n.modal-default-button-no[data-v-478d961c] {\n    -webkit-text-size-adjust: none;\n    border-radius: 4px;\n    color: #fff;\n    display: inline-block;\n    overflow: hidden;\n    text-decoration: none;\n\n    background-color: #e53e3e;\n    border-bottom: 8px solid #e53e3e;\n    border-left: 18px solid #e53e3e;\n    border-right: 18px solid #e53e3e;\n    border-top: 8px solid #e53e3e;\n}\n.modal-enter[data-v-478d961c] {\n    opacity: 0;\n}\n.modal-leave-active[data-v-478d961c] {\n    opacity: 0;\n}\n.modal-enter .modal-container[data-v-478d961c],\n.modal-leave-active .modal-container[data-v-478d961c] {\n    transform: scale(1.1);\n}\n", ""]);
 
 // exports
 
@@ -6649,7 +6649,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.cursor[data-v-4d55b89a]:hover{\n    cursor: pointer;\n}\n.marginL[data-v-4d55b89a] {\n    margin-right: 5px;\n}\n.searchbar[data-v-4d55b89a]{\n    display: block;\n    width: 87%;\n    height: calc(1.5em + 0.75rem + 2px);\n    padding: 0.375rem 0.75rem;\n    font-size: 1rem;\n    font-weight: 400;\n    line-height: 1.5;\n    color: #495057;\n    background-color: #fff;\n    background-clip: padding-box;\n    border: 1px solid #ced4da;\n    border-radius: 0.25rem;\n}\n", ""]);
+exports.push([module.i, "\n.cursor[data-v-4d55b89a]:hover{\n        cursor: pointer;\n}\n.marginL[data-v-4d55b89a] {\n        margin-right: 5px;\n}\n    /*\n    .background{\n        color:#001845;;\n        background:#d4e6f6;\n        border-bottom:4px solid #9ea7af;\n        border-right: 1px solid #343a45;\n        padding:24px;\n    }\n    */\ntr[data-v-4d55b89a]:first-of-type{\n        color:#001845;;\n        background:#d4e6f6 !important;\n}\ntr[data-v-4d55b89a]:nth-child(even) {\n        background:#f6f6f6;\n}\ntr[data-v-4d55b89a]:nth-child(odd){\n        background: #e9e9e9;\n}\n/*\n    tr {\n        border-top: 1px solid #C1C3D1;\n        border-bottom-: 1px solid #C1C3D1;\n        color:#666B85;\n        font-size:16px;\n        font-weight:normal;\n        text-shadow: 0 1px 1px rgba(256, 256, 256, 0.1);\n    }\n*/\n.searchbar[data-v-4d55b89a]{\n        display: block;\n        width: 87%;\n        height: calc(1.5em + 0.75rem + 2px);\n        padding: 0.375rem 0.75rem;\n        font-size: 1rem;\n        font-weight: 400;\n        line-height: 1.5;\n        color: #495057;\n        background-color: #fff;\n        background-clip: padding-box;\n        border: 1px solid #ced4da;\n        border-radius: 0.25rem;\n}\n", ""]);
 
 // exports
 
@@ -38446,7 +38446,10 @@ var render = function() {
           _vm._v(" "),
           _c(
             "div",
-            { staticClass: "modal-footer" },
+            {
+              staticClass: "modal-footer",
+              staticStyle: { "justify-content": "space-between" }
+            },
             [
               _vm._t("footer", [
                 _c(
@@ -38846,14 +38849,17 @@ var render = function() {
                   _vm._v(_vm._s(_vm._f("dateFormat")(survey.feldstart)))
                 ]),
                 _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(survey.status))]),
+                _c("td", { staticStyle: { border: "none" } }, [
+                  _vm._v(_vm._s(survey.status))
+                ]),
                 _vm._v(" "),
                 _c(
                   "td",
                   {
                     staticStyle: {
                       display: "flex",
-                      "justify-content": "flex-end"
+                      "justify-content": "flex-end",
+                      border: "none"
                     }
                   },
                   [

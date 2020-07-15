@@ -10,7 +10,7 @@
                         </slot>
                     </div>
 
-                    <div class="modal-footer">
+                    <div class="modal-footer" style="justify-content: space-between">
                         <slot name="footer">
                             <button class="modal-default-button-yes" @click="EmitAndDeleteEntry(surveyId)">
                                 Ja, ich bin mir sicher!
@@ -88,13 +88,33 @@
     }
 
     .modal-default-button-yes {
-        float: right;
-        background-color: lightgreen;
+        -webkit-text-size-adjust: none;
+        border-radius: 4px;
+        color: #fff;
+        display: inline-block;
+        overflow: hidden;
+        text-decoration: none;
+
+        background-color: #48bb78;
+        border-bottom: 8px solid #48bb78;
+        border-left: 18px solid #48bb78;
+        border-right: 18px solid #48bb78;
+        border-top: 8px solid #48bb78;
     }
 
     .modal-default-button-no {
-        float: right;
-        background-color: lightcoral;
+        -webkit-text-size-adjust: none;
+        border-radius: 4px;
+        color: #fff;
+        display: inline-block;
+        overflow: hidden;
+        text-decoration: none;
+
+        background-color: #e53e3e;
+        border-bottom: 8px solid #e53e3e;
+        border-left: 18px solid #e53e3e;
+        border-right: 18px solid #e53e3e;
+        border-top: 8px solid #e53e3e;
     }
 
     .modal-enter {

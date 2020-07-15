@@ -3,7 +3,6 @@
 namespace Tests\Unit;
 
 use PHPUnit\Framework\TestCase;
-use Tests\Browser\Pages\Login;
 
 class ProjectTest extends TestCase
 {
@@ -12,8 +11,8 @@ class ProjectTest extends TestCase
      *
      * @return void
      */
-    public function testExample()
+    public function testProject()
     {
-        $this->browse()
+        $this->assertTrue(true);
     }
 }

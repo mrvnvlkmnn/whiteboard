@@ -23,13 +23,12 @@
 
 <div id="app" class="container" style="max-width: 1500px">
 
-    <div class="text-center" style="margin: 50px 0 50px 0;">
-        <h1>Whiteboard</h1>
-        <br>
+    <div class="text-center" style="margin: 50px 0 50px 0; display: flex; justify-content: space-between">
         <a href="{{url("projects")}}">
             <img src="{{asset("images/eae_logo.png")}}" width="500px" alt="Logo">
         </a>
-
+        <br>
+        <h1>Whiteboard</h1>
     </div>
 
     @yield('content')

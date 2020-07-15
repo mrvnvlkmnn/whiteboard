@@ -18,16 +18,18 @@ class MailController extends Controller
      */
     public function sendMail()
     {
-        $moreInfo = request("moreText");
+
         $mailCC = request('programmer');
         $mailAddress = array_shift($mailCC);
         $mailSend = Mail::to($mailAddress);
 
-        if (sizeof($mailCC) !== 1){
+        //dd(sizeof($mailCC));
+
+        if (sizeof($mailCC) !== 0){
                 $mailSend = $mailSend->cc($mailCC);
         }
 
-        $mailSend = $mailSend->send(new projectMail(Project::all()));
+        $mailSend = $mailSend->send(new projectMail(Project::orderBy("feldstart", 'DESC')->get()));
 
         return redirect('/sendMail')
             ->with('Erfolgreich!', 'E-Mail erfolgreich gesendet');
