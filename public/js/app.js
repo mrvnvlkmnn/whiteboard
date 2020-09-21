@@ -2071,21 +2071,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -38663,8 +38648,6 @@ var render = function() {
   return _c(
     "div",
     [
-      _vm._m(0),
-      _vm._v(" "),
       _c("cases", { attrs: { cases: _vm.counts } }),
       _vm._v(" "),
       _c("div", { staticClass: "input_group" }, [
@@ -39180,55 +39163,7 @@ var render = function() {
     1
   )
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      { staticClass: "row", staticStyle: { "margin-bottom": "20px" } },
-      [
-        _c("div", { staticClass: "col-lg-6 margin-tb" }, [
-          _c("div", { staticClass: "pull-left" }, [
-            _c("h3", [_vm._v("Projekte")])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "pull-right" }, [
-            _c(
-              "a",
-              {
-                staticClass: "btn btn-success",
-                attrs: { href: "projects/create" }
-              },
-              [_vm._v("Projekt hinzufügen")]
-            ),
-            _vm._v(" "),
-            _c(
-              "a",
-              { staticClass: "btn btn-info", attrs: { href: "sendMail" } },
-              [_vm._v("E-Mail senden")]
-            )
-          ])
-        ]),
-        _vm._v(" "),
-        _c(
-          "div",
-          {
-            staticStyle: {
-              width: "49%",
-              display: "flex",
-              "justify-content": "flex-end",
-              "align-items": "flex-end",
-              "margin-right": "15px"
-            }
-          },
-          [_c("h3", [_vm._v("Filter")])]
-        )
-      ]
-    )
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 

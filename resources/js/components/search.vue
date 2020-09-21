@@ -1,20 +1,5 @@
 <template>
     <div>
-        <div class="row" style="margin-bottom: 20px;">
-            <div class="col-lg-6 margin-tb">
-                <div class="pull-left">
-                    <h3>Projekte</h3>
-                </div>
-                <div class="pull-right">
-                    <a class="btn btn-success" href="projects/create">Projekt hinzufügen</a>
-                    <a class="btn btn-info" href="sendMail">E-Mail senden</a>
-                </div>
-            </div>
-            <div
-                style="width: 49%; display: flex; justify-content: flex-end; align-items: flex-end; margin-right: 15px;">
-                <h3>Filter</h3>
-            </div>
-        </div>
         <cases :cases="counts"></cases>
         <div class="input_group">
             <div class="input-group mb-3">
