@@ -20,10 +20,9 @@ class ProjectController extends Controller
     {
         $projects = Project::latest()->paginate(5);
 
-        return view('projects.index',compact('projects'))
-        ->with('i', (request()->input('page', 1) - 1) * 5);
+        return view('projects.index', compact('projects'))
+            ->with('i', (request()->input('page', 1) - 1) * 5);
     }
-
 
 
     /**
@@ -57,13 +56,13 @@ class ProjectController extends Controller
         Project::create($all);
 
         return redirect()->route('projects.index')
-                        ->with('Erfolgreich!','Projekt wurde erfolgreich erstellt.');
+            ->with('Erfolgreich!', 'Projekt wurde erfolgreich erstellt.');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  Product  $product
+     * @param Product $product
      * @return Response
      */
     public function show()
@@ -74,7 +73,7 @@ class ProjectController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  Product  $product
+     * @param Product $product
      * @return Response
      */
     public function edit(Project $project)
@@ -82,7 +81,7 @@ class ProjectController extends Controller
         $project->programmer = preg_split('/,/', $project->programmer);
         $project->project_manager = preg_split('/,/', $project->project_manager);
 
-        return view('projects.edit',compact('project'));
+        return view('projects.edit', compact('project'));
     }
 
     /**
@@ -106,13 +105,13 @@ class ProjectController extends Controller
         $project->update($all);
 
         return redirect()->route('projects.index')
-                        ->with('Erfolgreich!','Projekt wurde erfolgreich aktualisiert.');
+            ->with('Erfolgreich!', 'Projekt wurde erfolgreich aktualisiert.');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  Product  $product
+     * @param Product $product
      * @return Response
      */
     public function destroy(Project $project)
@@ -122,7 +121,6 @@ class ProjectController extends Controller
         return redirect()->route('projects.index')
             ->with('Erfolgreich!', 'Projekt wurde erfolgreich gelöscht.');
     }
-
 
 
 }

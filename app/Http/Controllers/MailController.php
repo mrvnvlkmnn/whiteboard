@@ -6,6 +6,7 @@ use App\Mail\projectMail;
 use App\Project;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 
 class MailController extends Controller
@@ -18,16 +19,21 @@ class MailController extends Controller
      */
     public function sendMail()
     {
-
         $mailCC = request('programmer');
-        $mailAddress = array_shift($mailCC);
+
+        if(empty($mailCC)){
+            $mailAddress = "it@earsandeyes.com";
+        }else{
+            $mailAddress = array_shift($mailCC);
+        }
         $mailSend = Mail::to($mailAddress);
 
-        //dd(sizeof($mailCC));
 
         if (sizeof($mailCC) !== 0){
                 $mailSend = $mailSend->cc($mailCC);
         }
+
+
 
         $mailSend = $mailSend->send(new projectMail(Project::orderBy("feldstart", 'DESC')->get()));
 

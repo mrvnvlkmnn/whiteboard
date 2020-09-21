@@ -32,7 +32,7 @@ class SearchController extends Controller
             $sql = $sql->where('status', '=', $request->filterQuery);
         }
 
-        switch($request->tableNumber){
+        switch ($request->tableNumber) {
             case 1:
                 $sql = $sql->orderBy('survey_number', 'asc');
             case 2:
@@ -55,32 +55,18 @@ class SearchController extends Controller
                 $sql = $sql->orderBy('feldstart', 'desc');
         }
 
-        /*
-        if ($request->tableNumber == 1) {
-            $sql = $sql->orderBy('survey_number', 'asc');
-        }elseif($request->tableNumber == 2) {
-            $sql = $sql->orderBy('programmer', 'asc');
-        }elseif($request->tableNumber == 3) {
-            $sql = $sql->orderBy('project_manager', 'asc');
-        }elseif($request->tableNumber == 4) {
-            $sql = $sql->orderBy('detail', 'asc');
-        }elseif($request->tableNumber == 5) {
-            $sql = $sql->orderBy('status', 'asc');
-        }
-        */
 
         return $sql->get();
 
+    }
 
-        /*
-        return Project::where('survey_number', 'LIKE', $searchQuery)
-            ->orWhere('programmer', 'LIKE', $searchQuery)
-            ->orWhere('project_manager', 'LIKE', $searchQuery)
-            ->orWhere('detail', 'LIKE', $searchQuery)
-            ->orWhere('info', 'LIKE', $searchQuery)
-            ->where('status', '=', $request->filterQuery)
+    public function countProgrammierung(Request $request){
+
+        $collection = Project::groupBy('status')
+            ->selectRaw('count(*)')
             ->get();
-        */
+
+        return $collection;
     }
 
     public function delete($project)
@@ -89,9 +75,6 @@ class SearchController extends Controller
 
         return Project::where('id', $project)->delete();
 
-        // Alternativen
-        // Project::where('id', $project)->delete();
-        // Project::whereId($project);
 
     }
 }

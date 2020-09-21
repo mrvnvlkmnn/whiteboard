@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Project;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -23,9 +24,9 @@ Route::post('/sendMail', 'MailController@sendMail');
 
 Route::post('/projectSearch', 'SearchController@index');
 
-Route::post('/sortBy', 'SearchController@index');
+Route::post('/countProgrammierung', 'SearchController@countProgrammierung');
 
-Route::post('/softDelete', 'SearchController@softDelete');
+Route::post('/sortBy', 'SearchController@index');
 
 
 Route::redirect('/', route("projects.index"));

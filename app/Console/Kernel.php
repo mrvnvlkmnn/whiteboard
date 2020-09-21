@@ -6,6 +6,7 @@ use App\Mail\projectMail;
 use App\Project;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 
@@ -29,8 +30,18 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
 
+
         // $schedule->command('inspire')->hourly();
-        $schedule->command('command:sendMail')->daily();
+        $schedule->command('command:sendMail')->daily()->when(function () {
+            $latestEntry = Project::latest()->first();
+
+            if(now()->subDay() < $latestEntry->created_at){
+
+                return true;
+            }
+            return false;
+
+        });
 
     }
 

@@ -19,7 +19,7 @@
         }
     </style>
 </head>
-<body>
+<body style="background: #EDF2F7">
 
 <div id="app" class="container" style="max-width: 1500px">
 
