@@ -4,7 +4,7 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 
-
+import 'alpinejs';
 require('./bootstrap');
 
 window.Vue = require('vue');

@@ -1,11 +1,14 @@
 <template>
     <div>
-        <cases :cases="counts"></cases>
-        <div class="input_group">
-            <div class="input-group mb-3">
+        <button @click="showCreatePage = true">test</button>
+        <cases :cases="counts" @clicked="changeFilterQuery"></cases>
+        <div class="w-full mb-3">
+            <div class="flex items-center px-3 py-3 shadow-sm rounded-md bg-white">
+        <div class="input_group w-full">
+            <div class="input-group">
                 <input type="text" placeholder="Suche nach einer Studie!" class="searchbar" name="search"
                        aria-label="Search" @keyup="searchIt"
-                       v-model="searchQuery" aria-describedby="basic-addon1" style="width: 87%; margin-right: 15px;">
+                       v-model="searchQuery" aria-describedby="basic-addon1" style="width: 85%; margin-right: 15px;">
                 <div style="width:175px;">
                     <select class="custom-select" v-model="filterQuery">
                         <option value="Alle">Alle</option>
@@ -17,89 +20,125 @@
                 </div>
             </div>
         </div>
-        <div>
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th width="200px">Studien-Nummer <a class="cursor" @click="tableNumber = 1"><img
-                            src="images/arrow_down.png" width="12px" alt="arrow"></a><a class="cursor"
-                                                                                        @click="tableNumber = 2"><img
-                            src="images/arrow_up.png" width="12px" alt="arrow"></a></th>
-                        <th width="180px">Programmierer <a class="cursor" @click="tableNumber = 3"><img
-                            src="images/arrow_down.png" width="12px" alt="arrow"></a><a class="cursor"
-                                                                                        @click="tableNumber = 4"><img
-                            src="images/arrow_up.png" width="12px" alt="arrow"></a></th>
-                        <th width="160px">Projektleiter <a class="cursor" @click="tableNumber = 5"><img
-                            src="images/arrow_down.png" width="12px" alt="arrow"></a><a class="cursor"
-                                                                                        @click="tableNumber = 6"><img
-                            src="images/arrow_up.png" width="12px" alt="arrow"></a></th>
-                        <th width="250px">Details <a class="cursor" @click="tableNumber = 7"><img
-                            src="images/arrow_down.png" width="12px" alt="arrow"></a><a class="cursor"
-                                                                                        @click="tableNumber = 8"><img
-                            src="images/arrow_up.png" width="12px" alt="arrow"></a></th>
-                        <th width="250px">geplanter Feldstart <a class="cursor" @click="tableNumber = 9"><img
-                            src="images/arrow_down.png" width="12px" alt="arrow"></a><a class="cursor"
-                                                                                        @click="tableNumber = 10"><img
-                            src="images/arrow_up.png" width="12px" alt="arrow"></a></th>
-                        <th colspan="2">Status</th>
-
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr v-for="survey in surveys">
-                        <td>{{ survey.survey_number }}</td>
-                        <td>{{ survey.programmer }}</td>
-                        <td>{{ survey.project_manager }}</td>
-                        <td>{{ survey.detail }}</td>
-                        <td>{{ survey.feldstart | dateFormat }}</td>
-                        <td v-if="survey.status === 'Im Feld'">
-                            <span class="relative inline-block px-3 py-1 font-semibold text-green-900 leading-tight">
-                                <span aria-hidden="" class="absolute inset-0 bg-green-200 opacity-50 rounded-full"></span>
-                                <span class="relative">{{ survey.status }}</span>
-                            </span>
-                        </td>
-                        <td v-else-if="survey.status === 'Kick-Off'">
-                            <span class="relative inline-block px-3 py-1 font-semibold text-orange-900 leading-tight">
-                                <span aria-hidden="" class="absolute inset-0 bg-orange-200 opacity-50 rounded-full"></span>
-                                <span class="relative">{{ survey.status }}</span>
-                            </span>
-                        </td>
-                        <td v-else-if="survey.status === 'Programmierung'">
-                            <span class="relative inline-block px-3 py-1 font-semibold text-blue-900 leading-tight">
-                                <span aria-hidden="" class="absolute inset-0 bg-blue-200 opacity-50 rounded-full"></span>
-                                <span class="relative">{{ survey.status }}</span>
-                            </span>
-                        </td>
-                        <td v-else-if="survey.status === 'TL bei PL'">
-                            <span class="relative inline-block px-3 py-1 font-semibold text-grey-900 leading-tight">
-                                <span aria-hidden="" class="absolute inset-0 bg-grey-200 opacity-50 rounded-full"></span>
-                                <span class="relative">{{ survey.status }}</span>
-                            </span>
-                        </td>
-                        <td style="display: flex; justify-content: flex-end;">
-                            <a :href="'projects/' + survey.id + '/edit'">
-                                <svg aria-hidden="true" width="25" focusable="false" data-prefix="fas" data-icon="edit"
-                                     class="svg-inline--fa fa-edit fa-w-18 marginL" role="img"
-                                     xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
-                                    <path fill="currentColor"
-                                          d="M402.6 83.2l90.2 90.2c3.8 3.8 3.8 10 0 13.8L274.4 405.6l-92.8 10.3c-12.4 1.4-22.9-9.1-21.5-21.5l10.3-92.8L388.8 83.2c3.8-3.8 10-3.8 13.8 0zm162-22.9l-48.8-48.8c-15.2-15.2-39.9-15.2-55.2 0l-35.4 35.4c-3.8 3.8-3.8 10 0 13.8l90.2 90.2c3.8 3.8 10 3.8 13.8 0l35.4-35.4c15.2-15.3 15.2-40 0-55.2zM384 346.2V448H64V128h229.8c3.2 0 6.2-1.3 8.5-3.5l40-40c7.6-7.6 2.2-20.5-8.5-20.5H48C21.5 64 0 85.5 0 112v352c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V306.2c0-10.7-12.9-16-20.5-8.5l-40 40c-2.2 2.3-3.5 5.3-3.5 8.5z"></path>
-                                </svg>
-                            </a>
-                            <a class="cursor marginL">
-                                <svg aria-hidden="true" style="color: darkred" @click="setDeleteID(survey.id)" width="20"
-                                     focusable="false" data-prefix="fas" data-icon="trash-alt"
-                                     class="svg-inline--fa fa-trash-alt fa-w-14" role="img"
-                                     xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
-                                    <path fill="currentColor"
-                                          d="M32 464a48 48 0 0 0 48 48h288a48 48 0 0 0 48-48V128H32zm272-256a16 16 0 0 1 32 0v224a16 16 0 0 1-32 0zm-96 0a16 16 0 0 1 32 0v224a16 16 0 0 1-32 0zm-96 0a16 16 0 0 1 32 0v224a16 16 0 0 1-32 0zM432 32H312l-9.4-18.7A24 24 0 0 0 281.1 0H166.8a23.72 23.72 0 0 0-21.4 13.3L136 32H16A16 16 0 0 0 0 48v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16V48a16 16 0 0 0-16-16z"></path>
-                                </svg>
-                            </a>
-
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+            </div>
         </div>
+        <div> <!-- begin table layout-->
+            <div class="flex flex-col">
+                <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+                    <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
+                        <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+                            <table class="table min-w-full divide-y divide-gray-200">
+                                <thead class="bg-eae-light">
+                                    <tr>
+                                        <th width="200px">
+                                            <div class="flex items-center">
+                                                <div>Studien-Nummer</div>
+                                                <a class="cursor ml-2" @click="setParameterForSorting('survey_number', 'asc')">
+                                                    <img src="images/arrow_down.png" width="12px" alt="arrow">
+                                                </a>
+                                                <a class="cursor" @click="setParameterForSorting('survey_number', 'desc')">
+                                                    <img src="images/arrow_up.png" width="12px" alt="arrow">
+                                                </a>
+                                            </div>
+                                        </th>
+                                        <th width="180px">
+                                            <div class="flex items-center">
+                                                <div>Programmierer</div>
+                                                <a class="cursor ml-2" @click="setParameterForSorting('programmer', 'asc')">
+                                                    <img src="images/arrow_down.png" width="12px" alt="arrow">
+                                                </a>
+                                                <a class="cursor" @click="setParameterForSorting('programmer', 'desc')">
+                                                    <img src="images/arrow_up.png" width="12px" alt="arrow">
+                                                </a>
+                                            </div>
+                                        </th>
+                                        <th width="160px">
+                                            <div class="flex items-center">
+                                                <div>Projektleiter</div>
+                                                <a class="cursor ml-2" @click="setParameterForSorting('project_manager', 'asc')">
+                                                    <img src="images/arrow_down.png" width="12px" alt="arrow">
+                                                </a>
+                                                <a class="cursor" @click="setParameterForSorting('project_manager', 'desc')">
+                                                    <img src="images/arrow_up.png" width="12px" alt="arrow">
+                                                </a>
+                                            </div>
+                                        </th>
+                                        <th width="250px">
+                                            <div class="flex items-center">
+                                                <div>Details</div>
+                                                <a class="cursor ml-2" @click="setParameterForSorting('detail', 'asc')">
+                                                    <img src="images/arrow_down.png" width="12px" alt="arrow">
+                                                </a>
+                                                <a class="cursor" @click="setParameterForSorting('detail', 'desc')">
+                                                    <img src="images/arrow_up.png" width="12px" alt="arrow">
+                                                </a>
+                                            </div>
+                                        </th>
+                                        <th width="250px">
+                                            <div class="flex items-center">
+                                                <div>geplanter Feldstart</div>
+                                                <a class="cursor ml-2" @click="setParameterForSorting('feldstart', 'asc')">
+                                                    <img src="images/arrow_down.png" width="12px" alt="arrow">
+                                                </a>
+                                                <a class="cursor" @click="setParameterForSorting('feldstart', 'desc')">
+                                                    <img src="images/arrow_up.png" width="12px" alt="arrow">
+                                                </a>
+                                            </div>
+                                        </th>
+                                        <th colspan="2">Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr v-for="survey in surveys">
+                                        <td>{{ survey.survey_number }}</td>
+                                        <td>{{ survey.programmer }}</td>
+                                        <td>{{ survey.project_manager }}</td>
+                                        <td>{{ survey.detail }}</td>
+                                        <td>{{ survey.feldstart | dateFormat }}</td>
+                                        <td v-if="survey.status === 'Im Feld'">
+                                            <span class="relative inline-block px-3 py-1 font-semibold text-green-900 leading-tight">
+                                                <span aria-hidden="" class="absolute inset-0 bg-green-200 opacity-50 rounded-full"></span>
+                                                <span class="relative">{{ survey.status }}</span>
+                                            </span>
+                                        </td>
+                                        <td v-else-if="survey.status === 'Kick-Off'">
+                                            <span class="relative inline-block px-3 py-1 font-semibold text-orange-900 leading-tight">
+                                                <span aria-hidden="" class="absolute inset-0 bg-orange-200 opacity-50 rounded-full"></span>
+                                                <span class="relative">{{ survey.status }}</span>
+                                            </span>
+                                        </td>
+                                        <td v-else-if="survey.status === 'Programmierung'">
+                                            <span class="relative inline-block px-3 py-1 font-semibold text-blue-900 leading-tight">
+                                                <span aria-hidden="" class="absolute inset-0 bg-blue-200 opacity-50 rounded-full"></span>
+                                                <span class="relative">{{ survey.status }}</span>
+                                            </span>
+                                        </td>
+                                        <td v-else-if="survey.status === 'TL bei PL'">
+                                            <span class="relative inline-block px-3 py-1 font-semibold text-yellow-900 leading-tight">
+                                                <span aria-hidden="" class="absolute inset-0 bg-yellow-200 opacity-50 rounded-full"></span>
+                                                <span class="relative">{{ survey.status }}</span>
+                                            </span>
+                                        </td>
+                                        <td style="display: flex; justify-content: flex-end;">
+                                            <a :href="'projects/' + survey.id + '/edit'">
+                                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M11 5H6C4.89543 5 4 5.89543 4 7V18C4 19.1046 4.89543 20 6 20H17C18.1046 20 19 19.1046 19 18V13M17.5858 3.58579C18.3668 2.80474 19.6332 2.80474 20.4142 3.58579C21.1953 4.36683 21.1953 5.63316 20.4142 6.41421L11.8284 15H9L9 12.1716L17.5858 3.58579Z" stroke="#2B6CB0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                </svg>
+                                            </a>
+                                            <a class="cursor marginL" @click="setDeleteID(survey.id)">
+                                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M19 7L18.1327 19.1425C18.0579 20.1891 17.187 21 16.1378 21H7.86224C6.81296 21 5.94208 20.1891 5.86732 19.1425L5 7M10 11V17M14 11V17M15 7V4C15 3.44772 14.5523 3 14 3H10C9.44772 3 9 3.44772 9 4V7M4 7H20" stroke="#C53030" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                </svg>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> <!-- end table layout-->
         <modal v-if="showModal" @close="showModal = false" :survey-id="deleteID"></modal>
     </div>
 </template>
@@ -113,10 +152,12 @@
                 searchQuery: '',
                 filterQuery: 'Alle',
                 id: [],
-                tableNumber: null,
+                columnName: null,
+                order: null,
                 timesPressed: null,
                 showModal: false,
                 deleteID: null,
+                allCases: [],
                 counts: {
                     KickOff:'',
                     Programmierung: '',
@@ -127,6 +168,7 @@
 
         created() {
             this.searchIt()
+            this.searchDataForCases()
         },
 
         filters: {
@@ -139,28 +181,40 @@
         watch: {
             filterQuery: function () {
                 this.searchIt()
+                this.searchDataForCases()
             },
-            tableNumber: function () {
+            columName: function () {
                 this.searchIt()
+                this.searchDataForCases()
+            },
+            order: function () {
+                this.searchIt()
+                this.searchDataForCases()
             }
         },
 
         methods: {
+            searchDataForCases(){
+              axios.post('./searchDataForCases').then(response =>{
+                  this.allCases = response.data
+                  this.cases()
+              })
+            },
             searchIt() {
                 axios.post('./projectSearch', {
                     searchQuery: this.searchQuery,
                     filterQuery: this.filterQuery,
-                    tableNumber: this.tableNumber,
+                    columnName: this.columnName,
+                    order: this.order,
                     timesPressed: this.timesPressed
-                }).then(response =>{
-                    this.surveys = response.data
-                    this.cases()
-                })
+                }).then(response =>this.surveys = response.data)
 
+            },
+            changeFilterQuery(value){
+              this.filterQuery = value
             },
             softDeleteEntry(id) {
                 axios.post('./softDelete').then(response => this.id = response.data)
-                console.log(id)
             },
 
             setDeleteID(id) {
@@ -168,15 +222,20 @@
                 this.showModal = true
             },
 
+            setParameterForSorting(name, order){
+                this.columnName = name
+                this.order = order
+            },
+
             cases() {
-                this.counts.KickOff = this.surveys.filter(function (survey){
-                    return survey.status === 'Kick-Off'
+                this.counts.KickOff = this.allCases.filter(function (allCases){
+                    return allCases.status === 'Kick-Off'
                 })
-                this.counts.Programmierung = this.surveys.filter(function (survey){
-                    return survey.status === 'Programmierung'
+                this.counts.Programmierung = this.allCases.filter(function (allCases){
+                    return allCases.status === 'Programmierung'
                 })
-                this.counts.ImFeld = this.surveys.filter(function (survey){
-                    return survey.status === 'Im Feld'
+                this.counts.ImFeld = this.allCases.filter(function (allCases){
+                    return allCases.status === 'Im Feld'
                 })
             },
 
@@ -188,12 +247,8 @@
     .cursor:hover {
         cursor: pointer;
     }
-
     .marginL {
         margin-right: 5px;
-    }
-    thead {
-        background: #B185A7;
     }
     .searchbar {
         display: block;

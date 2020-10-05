@@ -23,6 +23,7 @@ Route::get('/sendMail', 'MailController@show');
 Route::post('/sendMail', 'MailController@sendMail');
 
 Route::post('/projectSearch', 'SearchController@index');
+Route::post('/searchDataForCases', 'SearchController@getDataForCases');
 
 Route::post('/countProgrammierung', 'SearchController@countProgrammierung');
 
