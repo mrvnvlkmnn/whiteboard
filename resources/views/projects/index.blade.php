@@ -8,6 +8,6 @@
         </div>
     @endif
 
-    <search-bar></search-bar>
+        @livewire('search-controller', [])
     </div>
 @endsection
