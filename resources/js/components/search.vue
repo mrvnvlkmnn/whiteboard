@@ -1,6 +1,5 @@
 <template>
     <div>
-        <button @click="showCreatePage = true">test</button>
         <cases :cases="counts" @clicked="changeFilterQuery"></cases>
         <div class="w-full mb-3">
             <div class="flex items-center px-3 py-3 shadow-sm rounded-md bg-white">
@@ -102,8 +101,8 @@
                                             </span>
                                         </td>
                                         <td v-else-if="survey.status === 'Kick-Off'">
-                                            <span class="relative inline-block px-3 py-1 font-semibold text-orange-900 leading-tight">
-                                                <span aria-hidden="" class="absolute inset-0 bg-orange-200 opacity-50 rounded-full"></span>
+                                            <span class="relative inline-block px-3 py-1 font-semibold text-purple-900 leading-tight">
+                                                <span aria-hidden="" class="absolute inset-0 bg-purple-200 opacity-50 rounded-full"></span>
                                                 <span class="relative">{{ survey.status }}</span>
                                             </span>
                                         </td>

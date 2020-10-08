@@ -4009,7 +4009,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -8667,7 +8666,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".mx-5[data-v-214a236a]{\n  margin-right: 1.25rem !important;\n}\n", ""]);
+exports.push([module.i, ".mx-5[data-v-214a236a]{\n  margin-right: 1.25rem !important;\n}\n.cursor[data-v-214a236a]:hover {\n  cursor: pointer;\n}\n", ""]);
 
 // exports
 
@@ -40616,18 +40615,6 @@ var render = function() {
   return _c(
     "div",
     [
-      _c(
-        "button",
-        {
-          on: {
-            click: function($event) {
-              _vm.showCreatePage = true
-            }
-          }
-        },
-        [_vm._v("test")]
-      ),
-      _vm._v(" "),
       _c("cases", {
         attrs: { cases: _vm.counts },
         on: { clicked: _vm.changeFilterQuery }
@@ -41109,12 +41096,12 @@ var render = function() {
                                         "span",
                                         {
                                           staticClass:
-                                            "relative inline-block px-3 py-1 font-semibold text-orange-900 leading-tight"
+                                            "relative inline-block px-3 py-1 font-semibold text-purple-900 leading-tight"
                                         },
                                         [
                                           _c("span", {
                                             staticClass:
-                                              "absolute inset-0 bg-orange-200 opacity-50 rounded-full",
+                                              "absolute inset-0 bg-purple-200 opacity-50 rounded-full",
                                             attrs: { "aria-hidden": "" }
                                           }),
                                           _vm._v(" "),
@@ -41324,7 +41311,8 @@ var render = function() {
             _c(
               "div",
               {
-                staticClass: "p-3 rounded-full bg-indigo-600 bg-opacity-75",
+                staticClass:
+                  "p-3 rounded-full bg-purple-600 bg-opacity-75 cursor",
                 on: {
                   click: function($event) {
                     return _vm.changeFilterQuery("Kick-Off")
@@ -41386,7 +41374,8 @@ var render = function() {
             _c(
               "div",
               {
-                staticClass: "p-3 rounded-full bg-orange-600 bg-opacity-75",
+                staticClass:
+                  "p-3 rounded-full bg-blue-600 bg-opacity-75 cursor",
                 on: {
                   click: function($event) {
                     return _vm.changeFilterQuery("Programmierung")
@@ -41448,7 +41437,8 @@ var render = function() {
             _c(
               "div",
               {
-                staticClass: "p-3 rounded-full bg-pink-600 bg-opacity-75",
+                staticClass:
+                  "p-3 rounded-full bg-green-600 bg-opacity-75 cursor",
                 on: {
                   click: function($event) {
                     return _vm.changeFilterQuery("Im Feld")

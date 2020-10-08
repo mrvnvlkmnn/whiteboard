@@ -35,7 +35,7 @@
         "@ttskch/select2-bootstrap4-theme": "^1.4.0",
         "alpinejs": "^2.7.0",
         "select2": "^4.0.13",
-        "tailwindcss": "^1.8.10",
+        "tailwindcss": "^1.8.12",
         "vue-test-utils": "^1.0.0-beta.11"
     }
 }
