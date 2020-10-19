@@ -2,23 +2,24 @@
     <div>
         <cases :cases="counts" @clicked="changeFilterQuery"></cases>
         <div class="w-full mb-3">
+            <button @click="showCreateProject = true">test</button>
             <div class="flex items-center px-3 py-3 shadow-sm rounded-md bg-white">
-        <div class="input_group w-full">
-            <div class="input-group">
-                <input type="text" placeholder="Suche nach einer Studie!" class="searchbar" name="search"
-                       aria-label="Search" @keyup="searchIt"
-                       v-model="searchQuery" aria-describedby="basic-addon1" style="width: 85%; margin-right: 15px;">
-                <div style="width:175px;">
-                    <select class="custom-select" v-model="filterQuery">
-                        <option value="Alle">Alle</option>
-                        <option value="Kick-Off">Kick-Off</option>
-                        <option value="Programmierung">Programmierung</option>
-                        <option value="TL bei PL">TL bei PL</option>
-                        <option value="Im Feld">Im Feld</option>
-                    </select>
+                <div class="input_group w-full">
+                    <div class="input-group">
+                        <input type="text" placeholder="Suche nach einer Studie!" class="searchbar" name="search"
+                               aria-label="Search" @keyup="searchIt"
+                               v-model="searchQuery" aria-describedby="basic-addon1" style="width: 85%; margin-right: 15px;">
+                        <div style="width:175px;">
+                            <select class="custom-select" v-model="filterQuery">
+                                <option value="Alle">Alle</option>
+                                <option value="Kick-Off">Kick-Off</option>
+                                <option value="Programmierung">Programmierung</option>
+                                <option value="TL bei PL">TL bei PL</option>
+                                <option value="Im Feld">Im Feld</option>
+                            </select>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
             </div>
         </div>
         <div> <!-- begin table layout-->
@@ -138,13 +139,15 @@
                 </div>
             </div>
         </div> <!-- end table layout-->
+        <add-project v-if="showCreateProject" @close="showCreateProject = false"></add-project>
         <modal v-if="showModal" @close="showModal = false" :survey-id="deleteID"></modal>
     </div>
 </template>
 
 <script>
+    import addProject from "./addProject";
     export default {
-
+        components: { addProject },
         data() {
             return {
                 surveys: [],
@@ -157,6 +160,7 @@
                 showModal: false,
                 deleteID: null,
                 allCases: [],
+                showCreateProject: false,
                 counts: {
                     KickOff:'',
                     Programmierung: '',

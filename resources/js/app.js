@@ -4,7 +4,6 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 
-import 'alpinejs';
 require('./bootstrap');
 
 window.Vue = require('vue');
@@ -25,6 +24,7 @@ window.Vue = require('vue');
 Vue.component('search-bar', require('./components/search.vue').default);
 Vue.component('modal', require('./components/modal.vue').default);
 Vue.component('cases', require('./components/totalCases.vue').default);
+Vue.component('add-project', require('./components/addProject.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
