@@ -8,48 +8,23 @@ use Livewire\Component;
 
 class SearchController extends Component
 {
-    public $surveysOverview;
     public $search;
     public $surveys;
     public $filterQuery;
     public $columnName;
     public $order;
 
-    protected $listeners = ['searching' => 'search'];
+    protected $listeners = ['setParameterForSorting'];
 
     public function mount(){
-        $this->surveysOverview = Project::all();
-        $this->surveys = $this->search();
+        $this->filterQuery = "Alle";
 
     }
 
-    public function search()
-    {
 
-        $searchQuery = "%" . $this->search . "%";
-
-
-        $sql = Project::where(function ($query) use ($searchQuery) {
-            $query->where('survey_number', 'LIKE', $searchQuery)
-                ->orWhere('programmer', 'LIKE', $searchQuery)
-                ->orWhere('project_manager', 'LIKE', $searchQuery)
-                ->orWhere('detail', 'LIKE', $searchQuery)
-                ->orWhere('deleted_at', '=', 'NULL');
-        });
-
-        //$sql = $sql->orderBy('survey_number', 'asc');
-
-
-        /*
-        if ($this->filterQuery !== "Alle") {
-            $sql = $sql->where('status', '=', $this->filterQuery);
-        }
-        if(!empty($this->columnName)){
-            $sql = $sql->orderBy($this->columnName, $this->order);
-        }
-*/
-        return $sql->get();
-
+    public function setParameterForSorting($name, $order){
+        $this->columnName = $name;
+        $this->order = $order;
     }
 
     public function countProgrammierung(Request $request){
@@ -71,6 +46,25 @@ class SearchController extends Component
 
     public function render()
     {
+        $searchQuery = "%" . $this->search . "%";
+
+        $surveys = Project::where(function ($query) use ($searchQuery) {
+            $query->where('survey_number', 'LIKE', $searchQuery)
+                ->orWhere('programmer', 'LIKE', $searchQuery)
+                ->orWhere('project_manager', 'LIKE', $searchQuery)
+                ->orWhere('detail', 'LIKE', $searchQuery)
+                ->orWhere('deleted_at', '=', 'NULL');
+        });
+
+        if ($this->filterQuery !== "Alle") {
+            $surveys = $surveys->where('status', '=', $this->filterQuery);
+        }
+        if(!empty($this->columnName)){
+            $surveys = $surveys->orderBy($this->columnName, $this->order);
+        }
+
+        $this->surveys = $surveys->get();
+
         return view('livewire.search-controller');
     }
 }

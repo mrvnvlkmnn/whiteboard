@@ -7,6 +7,7 @@
     <title>Whiteboard</title>
     <!-- Bootstrap CSS -->
     <link href="{{ asset("css/app.css") }}" rel="stylesheet">
+    @livewireStyles
     <!-- Select2 CSS and JS -->
     <link href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" rel="stylesheet">
     <script src="{{ asset("js/app.js") }}" defer></script>
@@ -51,5 +52,6 @@
         @yield('content')
 </div>
 <script src="{{ asset('js/app.js') }}" defer></script>
+@livewireScripts
 </body>
 </html>
