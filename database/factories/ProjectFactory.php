@@ -23,7 +23,7 @@ $factory->define(App\Project::class, function (Faker $faker) {
 
 
     return [
-        'survey_number' => Str::random(5),
+        'survey_number' => "Q200" . rand(0, 99) . "de",
         'programmer' => array_rand(config('employees.programmer')),
         'project_manager' => array_rand(config('employees.project_manager')),
         'detail' => $faker->word(1),

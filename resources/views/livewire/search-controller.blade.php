@@ -3,17 +3,19 @@
         <div class="flex items-center px-3 py-2 mt-3 shadow-sm rounded-md bg-white">
             <div class="input_group w-full">
                 <div class="input-group">
-                    <input type="text" wire:model="search" placeholder="Suche nach einer Studie!" class="searchbar" name="search"
-                           aria-label="Search"
-                            aria-describedby="basic-addon1" style="width: 85%; margin-right: 15px;">
-                    <div style="width:175px;">
-                        <select class="custom-select" wire:model="filterQuery">
-                            <option value="Alle">Alle</option>
-                            <option value="Kick-Off">Kick-Off</option>
-                            <option value="Programmierung">Programmierung</option>
-                            <option value="TL bei PL">TL bei PL</option>
-                            <option value="Im Feld">Im Feld</option>
-                        </select>
+                    <div class="w-full">
+                        <div class="mt-1 mb-1 relative rounded-md shadow-sm">
+                            <input id="searchProject" wire:model="search" class="form-input block w-full pr-12 sm:text-sm sm:leading-5" placeholder="Suche nach einer Studie" />
+                            <div class="absolute inset-y-0 right-0 flex items-center">
+                                <select aria-label="Status" wire:model="filterQuery"class="form-select h-full py-0 pl-2 pr-7 border-transparent bg-transparent text-gray-500 sm:text-sm sm:leading-5">
+                                    <option value="Alle">Alle</option>
+                                    <option value="Kick-Off">Kick-Off</option>
+                                    <option value="Programmierung">Programmierung</option>
+                                    <option value="TL bei PL">TL bei PL</option>
+                                    <option value="Im Feld">Im Feld</option>
+                                </select>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -87,7 +89,7 @@
                             </thead>
                             <tbody>
                             @foreach ($surveys as $survey)
-                            <tr>
+                            <tr class="tableColored">
                                 <td>{{ $survey->survey_number }}</td>
                                 <td>{{ $survey->programmer }}</td>
                                 <td>{{ $survey->project_manager }}</td>
@@ -127,12 +129,12 @@
                                 </td>
                                 @endif
                                 <td style="display: flex; justify-content: flex-end;">
-                                    <a >
+                                    <a class="cursor" wire:click="$emit('showComponent', 'editProject', {{ $survey->id }})">
                                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <path d="M11 5H6C4.89543 5 4 5.89543 4 7V18C4 19.1046 4.89543 20 6 20H17C18.1046 20 19 19.1046 19 18V13M17.5858 3.58579C18.3668 2.80474 19.6332 2.80474 20.4142 3.58579C21.1953 4.36683 21.1953 5.63316 20.4142 6.41421L11.8284 15H9L9 12.1716L17.5858 3.58579Z" stroke="#2B6CB0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                                         </svg>
                                     </a>
-                                    <a class="cursor marginL" @click="open = true">
+                                    <a class="cursor marginL" wire:click="$emit('showComponent', 'Modal', {{ $survey->id }})">
                                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <path d="M19 7L18.1327 19.1425C18.0579 20.1891 17.187 21 16.1378 21H7.86224C6.81296 21 5.94208 20.1891 5.86732 19.1425L5 7M10 11V17M14 11V17M15 7V4C15 3.44772 14.5523 3 14 3H10C9.44772 3 9 3.44772 9 4V7M4 7H20" stroke="#C53030" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                                         </svg>
@@ -148,4 +150,5 @@
         </div>
     </div> <!-- end table layout-->
     @livewire('modal')
+    @livewire('edit-project')
 </div>

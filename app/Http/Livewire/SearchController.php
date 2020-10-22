@@ -13,36 +13,36 @@ class SearchController extends Component
     public $filterQuery;
     public $columnName;
     public $order;
+    public $surveyID;
 
-    protected $listeners = ['setParameterForSorting'];
+    protected $listeners = ['setParameterForSorting', 'render', 'changeFilterQuery', 'showComponent'];
+
+    #set x-data for Modal, addProject and editProject
+    public function showComponent($component, $surveyId){
+        if($component == "Modal"){
+            $this->emitTo('modal', 'showModal');
+            $this->emitTo('modal', 'sendSurveyId', $surveyId);
+        }
+        if($component == "editProject"){
+            $this->emitTo('edit-project', 'showEditProject');
+            $this->emitTo('edit-project', 'sendSurveyId', $surveyId);
+        }
+    }
 
     public function mount(){
         $this->filterQuery = "Alle";
 
     }
 
-
+    #getting the columName and the order for sorting
     public function setParameterForSorting($name, $order){
         $this->columnName = $name;
         $this->order = $order;
     }
 
-    public function countProgrammierung(Request $request){
-
-        $collection = Project::groupBy('status')
-            ->selectRaw('count(*)')
-            ->get();
-        return $collection;
-    }
-
-    public function delete($project)
-    {
-        Project::where('id', $project)->update(["status" => "Gelöscht"]);
-
-        return Project::where('id', $project)->delete();
-
-
-    }
+    public function changeFilterQuery($filterQuery){
+        $this->filterQuery = $filterQuery;
+}
 
     public function render()
     {

@@ -1,12 +1,12 @@
 
-<div x-data="{ open: false }" x-init="
+<div x-data="{ open: @entangle('showModal') }" x-init="
   () => document.body.classList.add('overflow-hidden');
   $watch('open', value => {
     if (value === true) { document.body.classList.add('overflow-hidden') }
     else { document.body.classList.remove('overflow-hidden') }
   });" x-show="open" class="fixed z-10 inset-0 overflow-y-auto">
     <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
-        <div x-show="open" x-description="Background overlay, show/hide based on modal state." x-transition:enter="ease-out duration-300" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="ease-in duration-200" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="fixed inset-0 transition-opacity">
+        <div x-transition:enter="ease-out duration-300" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="ease-in duration-200" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="fixed inset-0 transition-opacity">
             <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
         </div>
 
@@ -21,11 +21,11 @@
                         </svg>
                     </div>
                     <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
-                        <h3 class="text-lg leading-6 font-medium text-gray-900" id="modal-headline">
+                        <h3 class="text-lg leading-6 font-medium text-gray-900 text-left" id="modal-headline">
                             Projekt löschen
                         </h3>
                         <div class="mt-2">
-                            <p class="text-sm leading-5 text-gray-500 text-right">
+                            <p class="text-sm leading-5 text-gray-500 text-left">
                                 Bist du dir sicher dass du diese Projekt löschen willst. Alle Daten werden entfernt. Diese Aktion ist irreversibel
                             </p>
                         </div>
@@ -33,16 +33,16 @@
                 </div>
             </div>
             <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
-  <span class="flex w-full rounded-md shadow-sm sm:ml-3 sm:w-auto pt-3">
-    <button @click="open = false" type="button" class="inline-flex justify-center w-full rounded-md border border-transparent px-4 py-2 bg-red-600 text-base leading-6 font-medium text-white shadow-sm hover:bg-red-500 focus:outline-none focus:border-red-700 focus:shadow-outline-red transition ease-in-out duration-150 sm:text-sm sm:leading-5">
-      Löschen
-    </button>
-  </span>
+                <span class="flex w-full rounded-md shadow-sm sm:ml-3 sm:w-auto pt-3">
+                    <button @project-deleted.window="open = false" wire:click="$emit('deleteProject')" type="button" class="inline-flex justify-center w-full rounded-md border border-transparent px-4 py-2 bg-red-600 text-base leading-6 font-medium text-white shadow-sm hover:bg-red-500 focus:outline-none focus:border-red-700 focus:shadow-outline-red transition ease-in-out duration-150 sm:text-sm sm:leading-5">
+                    Löschen
+                    </button>
+                </span>
                 <span class="mt-3 flex w-full rounded-md shadow-sm sm:mt-0 sm:w-auto">
-    <button wire:click="$emit('test')" type="button" class="inline-flex justify-center w-full rounded-md border border-gray-300 px-4 py-2 bg-white text-base leading-6 font-medium text-gray-700 shadow-sm hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue transition ease-in-out duration-150 sm:text-sm sm:leading-5">
-      Abbrechen
-    </button>
-  </span>
+                    <button @click="open = false" type="button" class="inline-flex justify-center w-full rounded-md border border-gray-300 px-4 py-2 bg-white text-base leading-6 font-medium text-gray-700 shadow-sm hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue transition ease-in-out duration-150 sm:text-sm sm:leading-5">
+                    Abbrechen
+                    </button>
+                </span>
             </div>
         </div>
     </div>
