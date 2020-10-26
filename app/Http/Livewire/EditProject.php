@@ -2,9 +2,10 @@
 
 namespace App\Http\Livewire;
 
-use App\Http\Requests\UpdateProjectRequest;
+use App\Mail\testlinkMail;
 use App\Project;
 use Livewire\Component;
+use Illuminate\Support\Facades\Mail;
 
 class EditProject extends Component
 {
@@ -17,10 +18,11 @@ class EditProject extends Component
     public $detail;
     public $feldstart;
     public $status;
+    public $mail_sent_at;
 
     public $showEditProject = false;
 
-    protected $listeners = ['sendSurveyId', 'showEditProject', 'updateProject'];
+    protected $listeners = ['sendSurveyId', 'showEditProject'];
     protected $rules = [
         'survey_number'     => 'required',
         'programmer'        => 'required',
@@ -31,7 +33,13 @@ class EditProject extends Component
 
     ];
 
-    public function sendSurveyId($surveyId){
+    public function closeEditProject()
+    {
+        $this->showEditProject = false;
+    }
+
+    public function sendSurveyId($surveyId)
+    {
         $this->surveyId = $surveyId;
 
         #set programmmer, project_manager, etc.
@@ -43,27 +51,53 @@ class EditProject extends Component
         $this->detail = $this->project->detail;
         $this->feldstart = $this->project->feldstart;
         $this->status = $this->project->status;
+        $this->mail_sent_at = $this->project->mail_sent_at;
 
 
     }
 
-
-    public function updateProject(){
+    public function updateProject()
+    {
 
         $this->validate();
 
-        $all = $request->all();
-        $all['programmer'] = implode(',', $all['programmer']);
-        $all['project_manager'] = implode(',', $all['project_manager']);
+        Project::find($this->surveyId)
+            ->update([
+                'survey_number' => $this->survey_number,
+                'programmer' => $this->programmer,
+                'project_manager' => $this->project_manager,
+                'detail' => $this->detail,
+                'feldstart' => $this->feldstart,
+                'status' => $this->status
+            ]);
 
-        $this->project->update($all);
+        if($this->status == 'TL bei PL' && $this->mail_sent_at == null){
+            if(count($this->project_manager) >= 2){
+                $mail = Mail::to($this->project_manager[0] . '@earsandeyes.com');
+                array_shift($this->project_manager);
+                $mail->cc($this->project_manager);
+                $mail->send(new testlinkMail());
+            }else{
+                $mail = Mail::to($this->project_manager[0] . '@earsandeyes.com');
+                $mail->send(new testlinkMail(Project::find($this->surveyId)));
+                Project::find($this->surveyId)->update([
+                    'mail_sent_at' => now()
+                ]);
+            }
 
-        #$this->emitUp('render');
+
+        }
+
+
+        $this->showEditProject = false;
+        $this->emitUp('render');
 
     }
 
-    public function showEditProject(){
+    public function showEditProject()
+    {
         $this->showEditProject = true;
+        $this->dispatchBrowserEvent('checkSelect2');
     }
 
     public function render()

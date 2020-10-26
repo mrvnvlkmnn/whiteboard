@@ -91,8 +91,8 @@
                             @foreach ($surveys as $survey)
                             <tr class="tableColored">
                                 <td>{{ $survey->survey_number }}</td>
-                                <td>{{ $survey->programmer }}</td>
-                                <td>{{ $survey->project_manager }}</td>
+                                <td>{{ implode(', ', $survey->programmer) }}</td>
+                                <td>{{ implode(', ', $survey->project_manager) }}</td>
                                 <td>{{ $survey->detail }}</td>
                                 <td>{{ date('j F, Y', strtotime($survey->feldstart)) }}</td>
                                 @if ($survey->status == 'Im Feld')
@@ -151,4 +151,5 @@
     </div> <!-- end table layout-->
     @livewire('modal')
     @livewire('edit-project')
+    @livewire('add-project')
 </div>

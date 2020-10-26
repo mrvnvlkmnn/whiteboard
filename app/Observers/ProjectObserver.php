@@ -38,7 +38,6 @@ class ProjectObserver
     {
         info("test");
         $project->status = "Gelöscht";
-        dd($project);
     }
 
     /**

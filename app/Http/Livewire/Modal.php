@@ -10,18 +10,16 @@ class Modal extends Component
     public $surveyId;
     public $showModal = false;
 
-    protected $listeners = ['deleteProject', 'sendSurveyId', 'showModal'];
+    protected $listeners = ['sendSurveyId', 'showModal'];
 
     public function showModal(){
         $this->showModal = true;
     }
 
     public function deleteProject(){
-            $project = Project::find($this->surveyId);
-            $project->delete();
-            $this->dispatchBrowserEvent('project-deleted');
-            $this->emitUp('render');
-
+        Project::find($this->surveyId)->delete();
+        $this->showModal = false;
+        $this->emitUp('render');
     }
 
     public function sendSurveyId($surveyId){

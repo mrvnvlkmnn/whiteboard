@@ -3,7 +3,6 @@
 namespace App\Http\Livewire;
 
 use App\Project;
-use Illuminate\Http\Request;
 use Livewire\Component;
 
 class SearchController extends Component
