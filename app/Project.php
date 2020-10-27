@@ -17,6 +17,10 @@ class Project extends Model
         'feldstart',
         'status'
     ];
+    protected $casts = [
+        'programmer' => 'array',
+        'project_manager' => 'array'
+    ];
 
     use SoftDeletes;
 

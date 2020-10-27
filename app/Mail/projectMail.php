@@ -30,6 +30,6 @@ class projectMail extends Mailable
      */
     public function build()
     {
-        return $this->markdown('emails.projectMail');
+        return $this->markdown('emails.testlinkMail');
     }
 }

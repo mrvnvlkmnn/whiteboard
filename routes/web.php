@@ -19,16 +19,6 @@ Route::resource('projects', 'ProjectController');
 
 Auth::routes();
 
-Route::get('/sendMail', 'MailController@show');
-Route::post('/sendMail', 'MailController@sendMail');
-
-Route::post('/projectSearch', 'SearchController@index');
-Route::post('/searchDataForCases', 'SearchController@getDataForCases');
-
-Route::post('/countProgrammierung', 'SearchController@countProgrammierung');
-
-Route::post('/sortBy', 'SearchController@index');
-
 
 Route::redirect('/', route("projects.index"));
 

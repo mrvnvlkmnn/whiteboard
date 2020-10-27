@@ -2,9 +2,18 @@
 @import url('https://fonts.googleapis.com/css?family=Nunito');
 
 // Variables
+.cursor{
+    cursor: pointer;
+}
+
+.tableColored:nth-child(odd){
+    background: #F7FAFC;
+}
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+
+@import "~select2";
 
 @import '~@ttskch/select2-bootstrap4-theme/dist/select2-bootstrap4.css';
 

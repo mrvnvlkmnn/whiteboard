@@ -40,6 +40,25 @@ return [
 
     ],
 
+    'mailsProjectManager' => [
+        'AN@earsandeyes.com' => 'Adrian Neumann',
+        'AZ@earsandeyes.com' => 'Anja Zietzschmann',
+        'DJ@earsandeyes.com' => 'Debora Jahnke',
+        'EH@earsandeyes.com' => 'Esther Hestermann',
+        'FL@earsandeyes.com' => 'Frank Lüttschwager',
+        'FZ@earsandeyes.com' => 'Frank Zander',
+        'GP@earsandeyes.com' => 'Gabriele Pattas',
+        'JB@earsandeyes.com' => 'Juliane Berek',
+        'JF@earsandeyes.com' => 'Janika Feld',
+        'LH@earsandeyes.com' => 'Lara Helmcke',
+        'LS@earsandeyes.com' => 'Lea Schurawitzki',
+        'MB@earsandeyes.com' => 'Meike Bauermann',
+        'SB@earsandeyes.com' => 'Sandra Bache',
+        'SM@earsandeyes.com' => 'Susanne Maisch',
+        'SP@earsandeyes.com' => 'Sylvia Pichert',
+        'SW@earsandeyes.com' => 'Saghar Walizada',
+    ],
+
 
 ];
 ?>

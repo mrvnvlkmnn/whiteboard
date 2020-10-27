@@ -6,11 +6,18 @@ module.exports = {
   purge: [],
   theme: {
     extend: {
-        colors:{
-            'eae-dark': '#000F4D',
+        colors: {
+            'eae-dark': '#001845',
             'eae-light': '#D4E6F6',
-        },},
+        },
+        textColor: {
+            'eae-dark': '#001845',
+            'eae-light': '#D4E6F6',
+        }
+    },
   },
   variants: {},
-  plugins: [],
+  plugins: [
+      require('@tailwindcss/ui'),
+  ],
 }
