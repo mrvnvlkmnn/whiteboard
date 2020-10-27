@@ -148,7 +148,7 @@
                                 <td>
                                     <div class="flex items-center h-10">
                                         <div class="ml-4">
-                                            {{ date('j F, Y', strtotime($survey->feldstart)) }}
+                                            {{ $survey->feldstart->format('d.m.Y') }}
                                         </div>
                                     </div>
                                 </td>

@@ -11,6 +11,8 @@ class CountProjects extends Component
     public $kickOff;
     public $feld;
 
+    protected $listeners = ['render'];
+
     public function render()
     {
         $this->programming = Project::where('status', 'LIKE', 'Programmierung')->get();

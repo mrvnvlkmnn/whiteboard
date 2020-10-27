@@ -58,6 +58,7 @@ class AddProject extends Component
 
                 $this->showAddProject = false;
                 $this->emit('render');
+                $this->emitTo('count-projects', 'render');
 
             } else{
                 $this->addError('feldstart', 'Der Feldstart muss in der Zukunft liegen');

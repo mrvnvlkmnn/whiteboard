@@ -91,6 +91,7 @@ class EditProject extends Component
 
         $this->showEditProject = false;
         $this->emitUp('render');
+        $this->emitTo('count-projects', 'render');
 
     }
 

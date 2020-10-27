@@ -1,8 +1,8 @@
 <div class="mt-4">
-    <div class="flex flex-wrap -mx-6 mb-3">
-        <div class="w-full px-6 sm:w-1/2 xl:w-1/3">
-            <div class="flex items-center px-5 py-6 shadow-sm rounded-md bg-white">
-                <div wire:click="$emitTo('search-controller', 'changeFilterQuery', 'Kick-Off')" class="p-3 rounded-full bg-indigo-600 bg-opacity-75 cursor">
+    <div class="flex flex-wrap -mx-6 mb-3 justify-content-between">
+        <div wire:click="$emitTo('search-controller', 'changeFilterQuery', 'Kick-Off')"  class="cursor w-full px-6 sm:w-1/2 xl:w-1/3">
+            <div class="flex items-center px-3 py-3 shadow-sm rounded-md bg-white">
+                <div class="p-3 rounded-full bg-yellow-400 bg-opacity-75 cursor">
                     <svg class="h-8 w-8 text-white" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path fill-rule="evenodd" d="M18 13V5a2 2 0 00-2-2H4a2 2 0 00-2 2v8a2 2 0 002 2h3l3 3 3-3h3a2 2 0 002-2zM5 7a1 1 0 011-1h8a1 1 0 110 2H6a1 1 0 01-1-1zm1 3a1 1 0 100 2h3a1 1 0 100-2H6z" fill="currentColor" />
                     </svg>
@@ -10,7 +10,7 @@
 
                 <div class="mx-5">
                     <h4 class="text-2xl font-semibold text-gray-700">{{ count($kickOff) }}</h4>
-                    @if(count($kickOff) >= 2)
+                    @if(count($kickOff) >= 2 or count($kickOff) == 0)
                         <div class="text-gray-500">Studien im Kick-Off</div>
                     @else
                         <div class="text-gray-500">Studie im Kick-Off</div>
@@ -19,16 +19,16 @@
             </div>
         </div>
 
-        <div class="w-full mt-6 px-6 sm:w-1/2 xl:w-1/3 sm:mt-0">
-            <div class="flex items-center px-5 py-6 shadow-sm rounded-md bg-white">
-                <div wire:click="$emitTo('search-controller', 'changeFilterQuery', 'Programmierung')"  class="p-3 rounded-full bg-orange-600 bg-opacity-75 cursor">
+        <div wire:click="$emitTo('search-controller', 'changeFilterQuery', 'Programmierung')"  class="cursor w-full mt-6 px-6 sm:w-1/2 xl:w-1/3 sm:mt-0">
+            <div class="flex items-center px-3 py-3 shadow-sm rounded-md bg-white">
+                <div class="p-3 rounded-full bg-blue-400 bg-opacity-75 cursor">
                     <svg class="h-8 w-8 text-white" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path fill-rule="evenodd" d="M2 5a2 2 0 012-2h12a2 2 0 012 2v10a2 2 0 01-2 2H4a2 2 0 01-2-2V5zm3.293 1.293a1 1 0 011.414 0l3 3a1 1 0 010 1.414l-3 3a1 1 0 01-1.414-1.414L7.586 10 5.293 7.707a1 1 0 010-1.414zM11 12a1 1 0 100 2h3a1 1 0 100-2h-3z" fill="currentColor" />
                     </svg>
                 </div>
                 <div class="ml-5 mr-3">
                     <h4 class="text-2xl font-semibold text-gray-700">{{ count($programming) }}</h4>
-                    @if(count($programming) >= 2)
+                    @if(count($programming) >= 2 or count($programming) == 0)
                         <div class="text-gray-500">Studien in der Programmierung</div>
                     @else
                         <div class="text-gray-500">Studie in der Programmierung</div>
@@ -37,9 +37,9 @@
             </div>
         </div>
 
-        <div class="w-full mt-6 px-6 sm:w-1/2 xl:w-1/3 xl:mt-0">
-            <div class="flex items-center px-5 py-6 shadow-sm rounded-md bg-white">
-                <div wire:click="$emitTo('search-controller', 'changeFilterQuery', 'Im Feld')" class="p-3 rounded-full bg-pink-600 bg-opacity-75 cursor">
+        <div wire:click="$emitTo('search-controller', 'changeFilterQuery', 'Im Feld')" class="cursor w-full mt-6 px-6 sm:w-1/2 xl:w-1/3 xl:mt-0">
+            <div class="flex items-center px-3 py-3 shadow-sm rounded-md bg-white">
+                <div class="p-3 rounded-full bg-green-400 bg-opacity-75 cursor">
                     <svg class="h-8 w-8 text-white" viewBox="0 0 28 30" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M18.2 9.08889C18.2 11.5373 16.3196 13.5222 14 13.5222C11.6804 13.5222 9.79999 11.5373 9.79999 9.08889C9.79999 6.64043 11.6804 4.65556 14 4.65556C16.3196 4.65556 18.2 6.64043 18.2 9.08889Z" fill="currentColor"></path>
                         <path d="M25.2 12.0444C25.2 13.6768 23.9464 15 22.4 15C20.8536 15 19.6 13.6768 19.6 12.0444C19.6 10.4121 20.8536 9.08889 22.4 9.08889C23.9464 9.08889 25.2 10.4121 25.2 12.0444Z" fill="currentColor"></path>
@@ -52,7 +52,7 @@
 
                 <div class="mx-5">
                     <h4 class="text-2xl font-semibold text-gray-700">{{ count($feld) }}</h4>
-                    @if(count($feld) >= 2)
+                    @if(count($feld) >= 2 or count($feld) == 0)
                         <div class="text-gray-500">Studien im Feld</div>
                     @else
                         <div class="text-gray-500">Studie im Feld</div>

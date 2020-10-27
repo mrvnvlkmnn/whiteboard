@@ -20,6 +20,7 @@ class Modal extends Component
         Project::find($this->surveyId)->delete();
         $this->showModal = false;
         $this->emitUp('render');
+        $this->emitTo('count-projects', 'render');
     }
 
     public function sendSurveyId($surveyId){
