@@ -38,7 +38,7 @@
                         <strong>Programmierer:</strong>
                         <br>
                         <label style="width: 500px">
-                            <select class="select2 form-control" name="programmer[]" multiple>
+                            <select class="select2 form-control" style="width: 100%" name="programmer[]" multiple>
                                 @foreach(config('employees.programmer') as $key => $value)
                                     <option value="{{ $key }}" {{ in_array($key, Arr::wrap(old('programmer'))) ? 'selected' : '' }}>{{ $value }}</option>
                                 @endforeach

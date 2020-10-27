@@ -90,42 +90,119 @@
                             <tbody>
                             @foreach ($surveys as $survey)
                             <tr class="tableColored">
-                                <td>{{ $survey->survey_number }}</td>
-                                <td>{{ implode(', ', $survey->programmer) }}</td>
-                                <td>{{ implode(', ', $survey->project_manager) }}</td>
-                                <td>{{ $survey->detail }}</td>
-                                <td>{{ date('j F, Y', strtotime($survey->feldstart)) }}</td>
+                                <td>
+                                    <div class="flex items-center h-10">
+                                        <div class="ml-4">
+                                                {{ $survey->survey_number }}
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="flex items-center">
+                                        <div class="flex-shrink-0 h-10 w-10">
+                                            <span class="inline-block relative">
+                                                @switch($survey->programmer[0])
+                                                    @case("AG")
+                                                        <img class="h-9 w-9 rounded-full" src="{{ asset('images/employees/AntjeGroth_256.jpg') }}" alt="">
+                                                        @break
+                                                    @case("DS")
+                                                        <img class="h-9 w-9 rounded-full" src="{{ asset('images/employees/DennisSilberbach.jpg') }}" alt="">
+                                                        @break
+                                                    @case("MV")
+                                                        <img class="h-9 w-9 rounded-full" src="{{ asset('images/employees/MarvinVolkmann.jpg') }}" alt="">
+                                                        @break
+                                                    @case("MY")
+                                                        <img class="h-9 w-9 rounded-full" src="{{ asset('images/employees/MawlidYussuf.jpg') }}" alt="">
+                                                        @break
+                                                    @case("NS")
+                                                        <img class="h-9 w-9 rounded-full" src="{{ asset('images/employees/NicoSorgenfrei.jpg') }}" alt="">
+                                                        @break
+                                                    @case("unknown")
+                                                        <img class="h-9 w-9 rounded-full" src="{{ asset('images/employees/IT.jpg') }}" alt="">
+                                                        @break
+                                                @endswitch
+                                                <span class="absolute top-0 left-0 block h-2 w-2 rounded-full text-white shadow-solid bg-red-600"></span>
+                                            </span>
+                                        </div>
+                                        <div class="ml-4">
+                                            <div class="text-sm leading-5text-gray-900">
+                                                {{ implode(', ', $survey->programmer) }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="flex items-center h-10">
+                                        <div class="ml-4">
+                                            {{ implode(', ', $survey->project_manager) }}
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="flex items-center h-10">
+                                        <div class="ml-4">
+                                            {{ $survey->detail }}
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="flex items-center h-10">
+                                        <div class="ml-4">
+                                            {{ date('j F, Y', strtotime($survey->feldstart)) }}
+                                        </div>
+                                    </div>
+                                </td>
                                 @if ($survey->status == 'Im Feld')
                                 <td>
-                                            <span class="relative inline-block px-3 py-1 font-semibold text-green-900 leading-tight">
+                                    <div class="flex items-center h-10">
+                                        <div class="ml-4">
+                                             <span class="relative inline-block px-3 py-1 font-semibold text-green-900 leading-tight">
                                                 <span aria-hidden="" class="absolute inset-0 bg-green-200 opacity-50 rounded-full"></span>
                                                 {{ $survey->status }}
                                                 <span class="relative"></span>
                                             </span>
+                                        </div>
+                                    </div>
+
                                 </td>
                                 @elseif($survey->status == 'TL bei PL')
                                 <td >
+                                    <div class="flex items-center h-10">
+                                        <div class="ml-4">
                                             <span class="relative inline-block px-3 py-1 font-semibold text-orange-900 leading-tight">
                                                 <span aria-hidden="" class="absolute inset-0 bg-orange-200 opacity-50 rounded-full"></span>
                                                 {{ $survey->status }}
                                                 <span class="relative"></span>
                                             </span>
+                                        </div>
+                                    </div>
+
                                 </td>
                                 @elseif($survey->status == 'Programmierung')
                                 <td >
+                                    <div class="flex items-center h-10">
+                                        <div class="ml-4">
                                             <span class="relative inline-block px-3 py-1 font-semibold text-blue-900 leading-tight">
                                                 <span aria-hidden="" class="absolute inset-0 bg-blue-200 opacity-50 rounded-full"></span>
                                                 {{ $survey->status }}
                                                 <span class="relative"></span>
                                             </span>
+                                        </div>
+                                    </div>
+
                                 </td>
                                 @elseif($survey->status == 'Kick-Off')
                                 <td >
+                                    <div class="flex items-center h-10">
+                                        <div class="ml-4">
                                             <span class="relative inline-block px-3 py-1 font-semibold text-yellow-900 leading-tight">
                                                 <span aria-hidden="" class="absolute inset-0 bg-yellow-200 opacity-50 rounded-full"></span>
                                                 {{ $survey->status }}
                                                 <span class="relative"></span>
                                             </span>
+                                        </div>
+                                    </div>
+
                                 </td>
                                 @endif
                                 <td style="display: flex; justify-content: flex-end;">

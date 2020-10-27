@@ -1,5 +1,29 @@
 <template>
+    <transition name="modal">
+        <div class="modal-mask">
+            <div class="modal-wrapper">
+                <div class="modal-container">
 
+                    <div class="modal-header">
+                        <slot name="header">
+                            <b>Bist du dir sicher, dass du das Projekt löschen möchtest?</b>
+                        </slot>
+                    </div>
+
+                    <div class="modal-footer" style="justify-content: space-between">
+                        <slot name="footer">
+                            <button class="modal-default-button-yes" @click="EmitAndDeleteEntry(surveyId)">
+                                Ja, ich bin mir sicher!
+                            </button>
+                            <button class="modal-default-button-no" @click="$emit('close')">
+                                Nein, bin ich mir nicht!
+                            </button>
+                        </slot>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </transition>
 </template>
 
 <script>

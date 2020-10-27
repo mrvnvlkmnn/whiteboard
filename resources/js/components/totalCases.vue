@@ -24,7 +24,7 @@
                             <path fill-rule="evenodd" d="M2 5a2 2 0 012-2h12a2 2 0 012 2v10a2 2 0 01-2 2H4a2 2 0 01-2-2V5zm3.293 1.293a1 1 0 011.414 0l3 3a1 1 0 010 1.414l-3 3a1 1 0 01-1.414-1.414L7.586 10 5.293 7.707a1 1 0 010-1.414zM11 12a1 1 0 100 2h3a1 1 0 100-2h-3z" fill="currentColor" />
                         </svg>
                     </div>
-                    <div class="mx-5">
+                    <div class="ml-5 mr-3">
                         <h4 class="text-2xl font-semibold text-gray-700">{{ $attrs['cases'].Programmierung.length }}</h4>
                         <div class="text-gray-500" v-if="$attrs['cases'].Programmierung.length >= 2">Studien in der Programmierung</div>
                         <div class="text-gray-500" v-else>Studie in der Programmierung</div>

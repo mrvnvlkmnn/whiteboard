@@ -16,13 +16,14 @@ class CreateProjectsTable extends Migration
         Schema::create('projects', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('survey_number');
-            $table->string('programmer');
-            $table->string('project_manager');
+            $table->json('programmer');
+            $table->json('project_manager');
             $table->text('detail');
             $table->date('feldstart');
             $table->text('status');
             $table->timestamps();
             $table->softDeletes();
+            $table->timestamp('mail_sent_at')->nullable();
         });
     }
 
