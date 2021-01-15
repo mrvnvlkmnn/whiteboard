@@ -15,6 +15,7 @@ class CountProjects extends Component
 
     public function render()
     {
+        //gets all projects where status is like programming, kick-of or im feld
         $this->programming = Project::where('status', 'LIKE', 'Programmierung')->get();
         $this->kickOff = Project::where('status', 'LIKE', 'Kick-Off')->get();
         $this->feld = Project::where('status', 'LIKE', 'Im Feld')->get();

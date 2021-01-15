@@ -31,6 +31,9 @@ class AddProject extends Component
 
     ];
 
+    //calling this function opens the window to add a project
+    //it sets the survey number to the current year
+    //activates select2
     public function showAddProject()
     {
         $this->showAddProject = true;
@@ -39,14 +42,18 @@ class AddProject extends Component
         $this->dispatchBrowserEvent('checkSelect2');
     }
 
+    //closes the window
     public function closeAddProject()
     {
         $this->showAddProject = false;
     }
 
+    //adds a project to the db
     public function addProject()
     {
+        //checks if data is valid
         if ($this->validate()) {
+            //checks if feldstart is in the future | feldstart need to be in the future!
             if ($this->feldstart >= now()) {
 
                 Project::create(['survey_number' => $this->survey_number,

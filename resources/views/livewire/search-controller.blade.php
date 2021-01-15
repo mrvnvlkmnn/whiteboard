@@ -148,7 +148,7 @@
                                 <td>
                                     <div class="flex items-center h-10">
                                         <div class="ml-4">
-                                            {{ $survey->feldstart->format('d.m.Y') }}
+                                            {{ $survey->feldstart->formatLocalized('%d %B %Y') }}
                                         </div>
                                     </div>
                                 </td>

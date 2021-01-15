@@ -6,6 +6,7 @@ use App\Mail\testlinkMail;
 use App\Project;
 use Livewire\Component;
 use Illuminate\Support\Facades\Mail;
+use Carbon\Carbon;
 
 class EditProject extends Component
 {
@@ -23,21 +24,26 @@ class EditProject extends Component
     public $showEditProject = false;
 
     protected $listeners = ['sendSurveyId', 'showEditProject'];
+
+    //defines rules for validation
     protected $rules = [
         'survey_number'     => 'required',
         'programmer'        => 'required',
         'project_manager'   => 'required',
         'detail'            => 'required',
-        'feldstart'         => 'required',
+        'feldstart'         => 'required', 'date:d-m-Y',
         'status'            => 'required',
 
     ];
 
+    //closes the window
     public function closeEditProject()
     {
         $this->showEditProject = false;
     }
 
+    //sends the id to identify the project to edit
+    //sets all the variables to show in the edit window
     public function sendSurveyId($surveyId)
     {
         $this->surveyId = $surveyId;
@@ -49,16 +55,15 @@ class EditProject extends Component
         $this->project_manager = $this->project->project_manager;
         $this->survey_number = $this->project->survey_number;
         $this->detail = $this->project->detail;
-        $this->feldstart = $this->project->feldstart;
+        $this->feldstart = $this->project->feldstart->toDateString();
         $this->status = $this->project->status;
         $this->mail_sent_at = $this->project->mail_sent_at;
-
-
     }
 
+    //updates the project in the db
     public function updateProject()
     {
-
+        //validates data
         $this->validate();
 
         Project::find($this->surveyId)
@@ -71,7 +76,10 @@ class EditProject extends Component
                 'status' => $this->status
             ]);
 
+        //checks if status equals 'TL bei PL', if so its sends a mail to the project manager who works on this survey
         if($this->status == 'TL bei PL' && $this->mail_sent_at == null){
+            //checks if more then 1 project manager is working on the project
+            //if so, it puts the second project manager in cc
             if(count($this->project_manager) >= 2){
                 $mail = Mail::to($this->project_manager[0] . '@earsandeyes.com');
                 array_shift($this->project_manager);
@@ -88,13 +96,15 @@ class EditProject extends Component
 
         }
 
-
+        //sets the variable to show to window to false,
+        //emtis event to parent controller and count-projects controller to render the updated entrys
         $this->showEditProject = false;
         $this->emitUp('render');
         $this->emitTo('count-projects', 'render');
 
     }
 
+    //shows the window
     public function showEditProject()
     {
         $this->showEditProject = true;

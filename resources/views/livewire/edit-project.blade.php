@@ -13,7 +13,7 @@
                 <div class="h-full flex flex-col space-y-6 py-6 bg-white shadow-xl overflow-y-scroll">
                     <header class="px-4 sm:px-6">
                         <h2 class="text-lg leading-7 font-medium text-gray-900">
-                            Project bearbeiten
+                            Projekt bearbeiten
                         </h2>
                     </header>
                     <div class="relative flex-1 px-4 sm:px-6">
@@ -26,12 +26,12 @@
                                         <div class="grid grid-cols-6 gap-6">
                                             <div class="col-span-6 sm:col-span-6">
                                                 <label for="survey_number" class="block text-sm font-medium leading-5 text-gray-700">Studien-Nummer</label>
-                                                <input wire:model="survey_number" id="survey_number" value="{{ $survey_number }}" class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5">
+                                                <input wire:model.defer="survey_number" id="survey_number" value="{{ $survey_number }}" class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5">
                                             </div>
 
                                             <div wire:ignore class="col-span-6 sm:col-span-6">
                                                 <label for="programmer" class="block text-sm font-medium leading-5 text-gray-700">Programmierer</label>
-                                                <select wire:model="programmer" class="select2 form-control" multiple id="programmer">
+                                                <select wire:model.defer="programmer" class="select2 form-control" multiple id="programmer">
                                                     @foreach(config('employees.programmer') as $key => $value)
                                                         <option value="{{ $key }}" {{ in_array($key, old('programmer') ?? [$programmer] ) ? 'selected' : '' }}>{{ $value }}</option>
                                                     @endforeach
@@ -41,7 +41,7 @@
                                             <div wire:ignore class="col-span-6 sm:col-span-6">
                                                 <label for="project_manager" class="block text-sm font-medium leading-5 text-gray-700">Projektleiter</label>
                                                 <div class="relative">
-                                                    <select wire:model="project_manager" class="select2 form-control" multiple id="project_manager">
+                                                    <select wire:model.defer="project_manager" class="select2 form-control" multiple id="project_manager">
                                                         @foreach(config('employees.project_manager') as $key => $value)
                                                             <option value="{{ $key }}" {{ in_array($key, old('project_manager') ?? [$project_manager] ) ? 'selected' : '' }}>{{ $value }}</option>
                                                         @endforeach
@@ -52,12 +52,12 @@
                                             <div class="col-span-6 sm:col-span-6">
                                                 <label for="details" class="block text-sm font-medium leading-5 text-gray-700">Details</label>
                                                 <div class="rounded-md shadow-sm">
-                                                    <textarea wire:model="detail" id="details" rows="3" class="form-textarea mt-1 block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5">{{ $detail }}</textarea>
+                                                    <textarea wire:model.defer="detail" id="details" rows="3" class="form-textarea mt-1 block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5">{{ $detail }}</textarea>
                                                 </div>
                                             </div>
 
                                             <div class="col-span-6">
-                                                <label for="feldstart" class="block text-sm font-medium leading-5 text-gray-700">geplanter Feldstart</label>
+                                                <label for="feldstart" class="block text-sm font-medium leading-5 text-gray-700">Geplanter Feldstart</label>
                                                 <input id="feldstart" wire:model="feldstart" type="date" value="{{ $feldstart }}" class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5">
                                             </div>
 
@@ -74,7 +74,7 @@
                                     </div>
                                     <div class="px-4 py-3 bg-gray-50 text-right sm:px-6">
                                         <button wire:click="updateProject" type="submit" class="py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-indigo-600 shadow-sm hover:bg-indigo-500 focus:outline-none focus:shadow-outline-blue active:bg-indigo-600 transition duration-150 ease-in-out">
-                                            Save
+                                            Speichern
                                         </button>
                                     </div>
                                 </div>
@@ -96,7 +96,6 @@
                                 })
                             })
                         </script>
-                        <!-- /End replace -->
                     </div>
                 </div>
             </div>

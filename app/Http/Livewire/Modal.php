@@ -12,10 +12,12 @@ class Modal extends Component
 
     protected $listeners = ['sendSurveyId', 'showModal'];
 
+    //sets the variable to show the modal
     public function showModal(){
         $this->showModal = true;
     }
 
+    //deletes the project
     public function deleteProject(){
         Project::find($this->surveyId)->delete();
         $this->showModal = false;
@@ -23,6 +25,7 @@ class Modal extends Component
         $this->emitTo('count-projects', 'render');
     }
 
+    //
     public function sendSurveyId($surveyId){
         $this->surveyId = $surveyId;
     }

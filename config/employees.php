@@ -4,6 +4,7 @@
 return [
     'programmer' => [
         'AG' => 'Antje Groth',
+        'AR' => 'Aaron Rechenberg',
         'DS' => 'Dennis Silberbach',
         'MV' => 'Marvin Volkmann',
         'MY' => 'Mawlid Yussuf',
@@ -13,6 +14,7 @@ return [
 
     'mailsIT' => [
         'AG@earsandeyes.com' => 'Antje Groth',
+        'AR@earsandeyes.com' => 'Aaron Rechenberg',
         'DS@earsandeyes.com' => 'Dennis Silberbach',
         'MV@earsandeyes.com' => 'Marvin Volkmann',
         'MY@earsandeyes.com' => 'Mawlid Yussuf',
@@ -61,5 +63,6 @@ return [
 
 
 ];
+
 ?>
 

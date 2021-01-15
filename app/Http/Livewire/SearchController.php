@@ -15,6 +15,7 @@ class SearchController extends Component
     public $columnName;
     public $order;
     public $surveyID;
+    public $programmerCounts;
 
     protected $listeners = ['setParameterForSorting', 'render', 'changeFilterQuery', 'showComponent'];
 
@@ -47,6 +48,14 @@ class SearchController extends Component
 
     public function render()
     {
+        $this->programmerCounts = [Project::where('programmer', 'LIKE', '["AG"]')->get(),
+            Project::where('programmer', 'LIKE', '["AR"]')->get(),
+            Project::where('programmer', 'LIKE', '["DS"]')->get(),
+            Project::where('programmer', 'LIKE', '["MV"]')->get(),
+            Project::where('programmer', 'LIKE', '["MY"]')->get(),
+            Project::where('programmer', 'LIKE', '["NS"]')->get()];
+
+        #dd(count($this->programmerCounts[0]));
         $searchQuery = "%" . $this->search . "%";
 
         $surveys = Project::where(function ($query) use ($searchQuery) {
