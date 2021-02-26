@@ -11,7 +11,7 @@
     },
     "devDependencies": {
         "@vue/test-utils": "^1.0.3",
-        "axios": "^0.19.2",
+        "axios": "^0.21.1",
         "bootstrap": "^4.5.0",
         "canvas": "^2.5.0",
         "cross-env": "^7.0",
@@ -33,6 +33,8 @@
         "@tailwindcss/ui": "^0.6.2",
         "@ttskch/select2-bootstrap4-theme": "^1.4.0",
         "alpinejs": "^2.7.0",
+        "laravel-echo": "^1.10.0",
+        "pusher-js": "^7.0.3",
         "select2": "^4.0.13",
         "tailwindcss": "^1.8.12",
         "vue-test-utils": "^1.0.0-beta.11"

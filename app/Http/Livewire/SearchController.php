@@ -75,6 +75,8 @@ class SearchController extends Component
 
         $this->surveys = $surveys->get();
 
+        setlocale(LC_TIME, 'deu_deu');
+
         return view('livewire.search-controller');
     }
 }

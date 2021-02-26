@@ -60,9 +60,17 @@ class EditProject extends Component
         $this->mail_sent_at = $this->project->mail_sent_at;
     }
 
+    private function checkIfDataChange(){
+
+        return true;
+    }
+
     //updates the project in the db
     public function updateProject()
     {
+        if($this->checkIfDataChange()){
+            echo "test";
+        }
         //validates data
         $this->validate();
 

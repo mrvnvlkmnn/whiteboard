@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Project;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
@@ -13,6 +14,7 @@ class SearchController extends Controller
      *
      * @return Response
      */
+
     public function index(Request $request)
     {
         $searchQuery = "%" . $request->searchQuery . "%";
