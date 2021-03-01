@@ -29,6 +29,10 @@ class SearchController extends Component
             $this->emitTo('edit-project', 'showEditProject');
             $this->emitTo('edit-project', 'sendSurveyId', $surveyId);
         }
+        if($component == "Details"){
+            $this->emitTo('details', 'showDetails');
+            $this->emitTo('details', 'sendSurveyId', $surveyId);
+        }
     }
 
     public function mount(){

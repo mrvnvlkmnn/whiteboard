@@ -36,8 +36,8 @@
                                             <div wire:ignore class="col-span-6 sm:col-span-6">
                                                 <label for="programmer_add" class="block text-sm font-medium leading-5 text-gray-700">Programmierer</label>
                                                 <select wire:model="programmer" class="select2 form-control" multiple name="programmer_add[]" id="programmer_add">
-                                                    @foreach(config('employees.programmer') as $key => $value)
-                                                        <option value="{{ $key }}">{{ $value }}</option>
+                                                    @foreach($employeesIT as $employeeIT)
+                                                        <option value="{{ $employeeIT->abbreviation }}">{{ $employeeIT->name }}</option>
                                                     @endforeach
                                                 </select>
                                                 @error('programmer')
@@ -51,8 +51,8 @@
                                                 <label for="project_manager_add" class="block text-sm font-medium leading-5 text-gray-700">Projektleiter</label>
                                                 <div class="relative">
                                                     <select wire:model="project_manager" class="select2 form-control" multiple id="project_manager_add">
-                                                        @foreach(config('employees.project_manager') as $key => $value)
-                                                            <option value="{{ $key }}">{{ $value }}</option>
+                                                        @foreach($employeesMafo as $employeeMafo)
+                                                            <option value="{{ $employeeMafo->abbreviation }}">{{ $employeeMafo->name }}</option>
                                                         @endforeach
                                                     </select>
                                                 </div>
@@ -77,7 +77,7 @@
 
                                             <div class="col-span-6">
                                                 <label for="feldstart_add" class="block text-sm font-medium leading-5 text-gray-700">geplanter Feldstart</label>
-                                                <input id="feldstart_add" wire:model="feldstart" type="date" value="{{ $feldstart }}" class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5">
+                                                <input id="feldstart_add" wire:model="feldstart" type="date" value="2021-03-02" class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5">
                                                 @error('feldstart')
                                                     <div class="m:inline ml-1 bg-pink-100 rounded-full mr-5 mt-2 py-0.5 flex items-center text-xs leading-4 tracking-wide uppercase font-semibold flex-shrink-0">
                                                         <span class="text-pink-700 ml-4">{{ $message }}</span>

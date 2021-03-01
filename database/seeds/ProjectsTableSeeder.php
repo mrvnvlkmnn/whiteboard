@@ -13,5 +13,6 @@ class ProjectsTableSeeder extends Seeder
     {
         //create 5 projects
         factory(App\Project::class, 5)->create();
+        factory(App\User::class, 30)->create();
     }
 }

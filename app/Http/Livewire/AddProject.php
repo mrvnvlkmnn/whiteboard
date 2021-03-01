@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Project;
+use App\User;
 use Livewire\Component;
 
 class AddProject extends Component
@@ -14,6 +15,8 @@ class AddProject extends Component
     public $detail;
     public $feldstart;
     public $status = 'Kick-Off';
+    public $employeesIT;
+    public $employeesMafo;
 
     protected $listeners = ['showAddProject'];
     protected $rules = [
@@ -37,8 +40,9 @@ class AddProject extends Component
     public function showAddProject()
     {
         $this->showAddProject = true;
-        $this->survey_number = "Q" . substr(date("Y"), 0, 2) . "0XXde";
+        $this->survey_number = "Q" . substr(date("Y"), 2, 2) . "0XXde";
         $this->feldstart = date("Y-n-j", strtotime('+1 day'));
+        //dd($this->feldstart);
         $this->dispatchBrowserEvent('checkSelect2');
     }
 
@@ -46,6 +50,13 @@ class AddProject extends Component
     public function closeAddProject()
     {
         $this->showAddProject = false;
+    }
+
+    private function getEmployees(){
+        $this->employeesIT = User::where('department', 'LIKE', 'IT')->get();
+        $this->employeesMafo = User::where('department', 'LIKE', 'Mafo')->get();
+
+        #dd($this->employees);
     }
 
     //adds a project to the db
@@ -75,6 +86,7 @@ class AddProject extends Component
 
     public function render()
     {
+        $this->getEmployees();
         return view('livewire.add-project');
     }
 }
