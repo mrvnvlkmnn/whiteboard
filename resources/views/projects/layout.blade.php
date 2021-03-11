@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="de">
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -9,6 +9,7 @@
     <link href="{{ asset("css/app.css") }}" rel="stylesheet">
     @livewireStyles
     <!-- Select2 CSS and JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="{{ asset('js/app.js') }}" defer></script>
 
 </head>
@@ -24,7 +25,7 @@
 
         @livewire('count-projects')
         @livewire('search-controller')
-</div>
+    </div>
 </div>
 @livewireScripts
 </body>

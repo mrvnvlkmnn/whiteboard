@@ -1,12 +1,10 @@
-
-<div x-data="{ open: @entangle('showModal') }" x-init="
-  () => document.body.classList.add('overflow-hidden');
+<div x-cloak x-data="{ open: @entangle('showModal') }" x-init="
   $watch('open', value => {
     if (value === true) { document.body.classList.add('overflow-hidden') }
     else { document.body.classList.remove('overflow-hidden') }
   });" x-show="open" class="fixed z-10 inset-0 overflow-y-auto">
     <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
-        <div x-transition:enter="ease-out duration-300" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="ease-in duration-200" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="fixed inset-0 transition-opacity">
+        <div x-show="open" x-transition:enter="ease-out duration-300" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="ease-in duration-200" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="fixed inset-0 transition-opacity">
             <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
         </div>
 

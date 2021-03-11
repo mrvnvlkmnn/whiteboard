@@ -27,7 +27,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        setlocale(LC_TIME, 'de_DE');
+        #setlocale(LC_TIME, 'de_DE');
         Carbon::setLocale('de');
         Schema::defaultStringLength(191);
         Project::observe(ProjectObserver::class);

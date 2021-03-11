@@ -14,13 +14,15 @@ class Project extends Model
         'programmer',
         'project_manager',
         'detail',
-        'feldstart',
-        'status'
+        'fieldstart',
+        'status',
+        'update_list',
     ];
     protected $casts = [
         'programmer' => 'array',
         'project_manager' => 'array',
-        'feldstart' => 'datetime'
+        'fieldstart' => 'date',
+        'update_list' => 'array',
     ];
 
     use SoftDeletes;

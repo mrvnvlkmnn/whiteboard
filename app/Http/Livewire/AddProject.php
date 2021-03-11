@@ -13,10 +13,11 @@ class AddProject extends Component
     public $programmer;
     public $project_manager;
     public $detail;
-    public $feldstart;
+    public $fieldstart;
     public $status = 'Kick-Off';
     public $employeesIT;
     public $employeesMafo;
+    public $update_list = [];
 
     protected $listeners = ['showAddProject'];
     protected $rules = [
@@ -24,7 +25,7 @@ class AddProject extends Component
         'programmer' => 'required',
         'project_manager' => 'required',
         'detail' => 'required',
-        'feldstart' => 'required',
+        'fieldstart' => 'required',
         'status' => 'required',
 
     ];
@@ -41,7 +42,7 @@ class AddProject extends Component
     {
         $this->showAddProject = true;
         $this->survey_number = "Q" . substr(date("Y"), 2, 2) . "0XXde";
-        $this->feldstart = date("Y-n-j", strtotime('+1 day'));
+        $this->fieldstart = date("Y-n-j", strtotime('+1 day'));
         //dd($this->feldstart);
         $this->dispatchBrowserEvent('checkSelect2');
     }
@@ -59,27 +60,46 @@ class AddProject extends Component
         #dd($this->employees);
     }
 
+    function setUpdateList(){
+
+    }
+
     //adds a project to the db
     public function addProject()
     {
+        /*
+        $history = [
+            'xxx-11:00' => [
+                'type' => 'project_added',
+            ],
+            'xxx-12:00' => [
+                'type' => 'project_updated',
+                'changes' => [
+                    'description' => 'blablabla...'
+                ],
+            ],
+        ];*/
+
         //checks if data is valid
         if ($this->validate()) {
             //checks if feldstart is in the future | feldstart need to be in the future!
-            if ($this->feldstart >= now()) {
+            if ($this->fieldstart >= now()) {
 
                 Project::create(['survey_number' => $this->survey_number,
                     'programmer' => $this->programmer,
                     'project_manager' => $this->project_manager,
                     'detail' => $this->detail,
-                    'feldstart' => $this->feldstart,
-                    'status' => $this->status]);
+                    'fieldstart' => $this->fieldstart,
+                    'status' => $this->status,
+                    'update_list' => [time() => ['type' => 'project_added']],
+                ]);
 
                 $this->showAddProject = false;
                 $this->emit('render');
                 $this->emitTo('count-projects', 'render');
 
             } else{
-                $this->addError('feldstart', 'Der Feldstart muss in der Zukunft liegen');
+                $this->addError('fieldstart', 'Der Feldstart muss in der Zukunft liegen');
             }
         }
     }

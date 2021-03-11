@@ -1,5 +1,5 @@
 <div>
-    <nav class="flex items-center justify-between flex-wrap bg-eae-dark p-2 shadow-md">
+    <nav class="flex items-center text-left flex-wrap bg-eae-dark p-2 shadow-md">
         <div class="flex items-center flex-shrink-0 text-white mr-6">
             <a href="projects">
                 <img src="{{ asset('images/Logo_Nur Kopf.png') }}" width="80px" alt="Logo">
@@ -14,7 +14,7 @@
                 </svg>
             </button>
         </div>
-        <div class="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
+        <div class="w-full block lg:flex lg:items-center lg:w-auto">
             <div class="text-sm lg:flex-grow">
                 <a wire:click="$emitTo('add-project', 'showAddProject')" style="color: #D4E6F6;" class="cursor block mt-0 lg:inline-block lg:mt-0 text-eae-light hover:text-white mr-4">
                     Projekt hinzufügen

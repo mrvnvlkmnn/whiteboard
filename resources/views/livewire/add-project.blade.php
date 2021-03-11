@@ -1,4 +1,4 @@
-<div x-data="{addProject: @entangle('showAddProject')}" >
+<div  x-cloak x-data="{addProject: @entangle('showAddProject')}" >
     <div>
         <div x-show="addProject" x-transition:enter="ease-in-out duration-500" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="ease-in-out duration-500" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="absolute h-full inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
         <section class="absolute inset-y-0 right-0 pl-10 max-w-full flex">
@@ -77,8 +77,8 @@
 
                                             <div class="col-span-6">
                                                 <label for="feldstart_add" class="block text-sm font-medium leading-5 text-gray-700">geplanter Feldstart</label>
-                                                <input id="feldstart_add" wire:model="feldstart" type="date" value="2021-03-02" class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5">
-                                                @error('feldstart')
+                                                <input id="feldstart_add" wire:model="fieldstart" type="date" value="2021-03-02" class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5">
+                                                @error('fieldstart')
                                                     <div class="m:inline ml-1 bg-pink-100 rounded-full mr-5 mt-2 py-0.5 flex items-center text-xs leading-4 tracking-wide uppercase font-semibold flex-shrink-0">
                                                         <span class="text-pink-700 ml-4">{{ $message }}</span>
                                                     </div>

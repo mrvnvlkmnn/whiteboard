@@ -6,6 +6,7 @@ use App\Project;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\App;
 use Livewire\Component;
+use phpDocumentor\Reflection\Types\Boolean;
 
 class SearchController extends Component
 {
@@ -15,29 +16,53 @@ class SearchController extends Component
     public $columnName;
     public $order;
     public $surveyID;
-    public $programmerCounts;
 
     protected $listeners = ['setParameterForSorting', 'render', 'changeFilterQuery', 'showComponent'];
 
+
+    public function checkForEloquentWordingForDetail($input) : string{
+        switch ($input) {
+            case('survey_number'):
+                $output = "Studiennummer";
+            break;
+            case('programmer'):
+                $output = "Programmierer";
+            break;
+            case('project_manager'):
+                $output = "Projekt-Leiter";
+            break;
+            case('detail'):
+                $output = "Details";
+            break;
+            case('fieldstart'):
+                $output = "Felsdstart";
+            break;
+            case('status'):
+                $output = "Status";
+            break;
+
+        }
+        return $output;
+    }
+
     #set x-data for Modal, addProject and editProject
-    public function showComponent($component, $surveyId){
+    public function showComponent($component, $surveyId, $updateList){
         if($component == "Modal"){
             $this->emitTo('modal', 'showModal');
-            $this->emitTo('modal', 'sendSurveyId', $surveyId);
+            $this->emitTo('modal', 'sendSurveyId', $surveyId, $updateList);
         }
-        if($component == "editProject"){
+        elseif($component == "editProject"){
             $this->emitTo('edit-project', 'showEditProject');
             $this->emitTo('edit-project', 'sendSurveyId', $surveyId);
         }
-        if($component == "Details"){
-            $this->emitTo('details', 'showDetails');
-            $this->emitTo('details', 'sendSurveyId', $surveyId);
+        elseif($component == 'reactivateProject'){
+            $this->emitTo('reactivate-project', 'showReactivateProject');
+            $this->emitTo('reactivate-project', 'sendSurveyId', $surveyId, $updateList);
         }
     }
 
     public function mount(){
-        $this->filterQuery = "Alle";
-
+        $this->filterQuery = "Aktive";
     }
 
     #getting the columName and the order for sorting
@@ -52,34 +77,31 @@ class SearchController extends Component
 
     public function render()
     {
-        $this->programmerCounts = [Project::where('programmer', 'LIKE', '["AG"]')->get(),
-            Project::where('programmer', 'LIKE', '["AR"]')->get(),
-            Project::where('programmer', 'LIKE', '["DS"]')->get(),
-            Project::where('programmer', 'LIKE', '["MV"]')->get(),
-            Project::where('programmer', 'LIKE', '["MY"]')->get(),
-            Project::where('programmer', 'LIKE', '["NS"]')->get()];
 
-        #dd(count($this->programmerCounts[0]));
-        $searchQuery = "%" . $this->search . "%";
+        $searchQuery = "%" . strtoupper($this->search) . "%";
 
-        $surveys = Project::where(function ($query) use ($searchQuery) {
+        $searchFunction = function ($query) use ($searchQuery) {
             $query->where('survey_number', 'LIKE', $searchQuery)
                 ->orWhere('programmer', 'LIKE', $searchQuery)
                 ->orWhere('project_manager', 'LIKE', $searchQuery)
-                ->orWhere('detail', 'LIKE', $searchQuery)
-                ->orWhere('deleted_at', '=', 'NULL');
-        });
+                ->orWhere('detail', 'LIKE', $searchQuery);};
 
-        if ($this->filterQuery !== "Alle") {
-            $surveys = $surveys->where('status', '=', $this->filterQuery);
+        $surveys = Project::where($searchFunction);
+
+        if ($this->filterQuery == "deleted") {
+            $surveys = Project::onlyTrashed()->where($searchFunction);
+        }else{
+            if($this->filterQuery !== "Aktive"){
+                $surveys = $surveys->where('status', '=', $this->filterQuery);
+            }
         }
         if(!empty($this->columnName)){
             $surveys = $surveys->orderBy($this->columnName, $this->order);
         }
 
+
         $this->surveys = $surveys->get();
 
-        setlocale(LC_TIME, 'deu_deu');
 
         return view('livewire.search-controller');
     }

@@ -10,6 +10,18 @@
     background: #F7FAFC;
 }
 
+.origin{
+    transform-origin: 12px 12px;
+}
+
+.hideRow{
+    display: none;
+}
+
+[x-cloak] {
+    display: none;
+}
+
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 

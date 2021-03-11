@@ -32,7 +32,7 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        $year = "Q" . substr(date("Y"), 0, 2) . "0XXde";
+        $year = "Q" . substr(date("Y"), 2, 2) . "0XXde";
 
         return view('projects.create')->with('year', $year);
     }

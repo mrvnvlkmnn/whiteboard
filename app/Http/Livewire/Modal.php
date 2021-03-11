@@ -8,6 +8,7 @@ use Livewire\Component;
 class Modal extends Component
 {
     public $surveyId;
+    public $updateList;
     public $showModal = false;
 
     protected $listeners = ['sendSurveyId', 'showModal'];
@@ -19,6 +20,11 @@ class Modal extends Component
 
     //deletes the project
     public function deleteProject(){
+        $this->updateList[time()] = ['type' => 'project_deleted'];
+
+        Project::find($this->surveyId)->update(['status' => 'Gelöscht',
+                                                'update_list' => $this->updateList]);
+
         Project::find($this->surveyId)->delete();
         $this->showModal = false;
         $this->emitUp('render');
@@ -26,8 +32,9 @@ class Modal extends Component
     }
 
     //
-    public function sendSurveyId($surveyId){
+    public function sendSurveyId($surveyId, $updateList){
         $this->surveyId = $surveyId;
+        $this->updateList = $updateList;
     }
 
     public function render()
