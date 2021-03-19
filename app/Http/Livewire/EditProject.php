@@ -103,12 +103,6 @@ class EditProject extends Component
             $json[time()] = $changes;
         }
 
-        /*
-        if($this->checkIfDataChange()){
-            echo "test";
-        }
-        */
-
         //validates data
         $this->validate();
 
@@ -119,25 +113,24 @@ class EditProject extends Component
 
             if (count($this->project_manager) >= 2) {
                 $mail = Mail::to($this->project_manager[0] . '@earsandeyes.com');
-                array_shift($this->project_manager);
+                $project_managers = $this->project_manager;
+                array_shift($project_managers);
 
-                foreach($this->project_manager as $key => $value){
+                foreach($project_managers as $key => $value){
                     $mailCC[] = $value . '@earsandeyes.com';
                 }
-                #dd($mailCC);
                 $mail->cc($mailCC);
             } else {
                 $mail = Mail::to($this->project_manager[0] . '@earsandeyes.com');
             }
-
-            $json[time()] = ['type' => 'project_mail_sent',
+            $json[time() +1] = ['type' => 'project_mail_sent',
                 'changes' => [ 'mail_sent' => [
                     'old' => 'null',
                     'new' => time(),
                 ],
                 ]];
-
-            $mail->send(new testlinkMail($this->project));
+            /*
+            $mail->send(new testlinkMail($this->project));*/
         }
 
         $updates = [

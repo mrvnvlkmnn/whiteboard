@@ -6,16 +6,52 @@
     cursor: pointer;
 }
 
-.tableColored:nth-child(odd){
-    background: #F7FAFC;
+body::-webkit-scrollbar{
+    display: none;
 }
-
+body{
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
 .origin{
     transform-origin: 12px 12px;
 }
+table{
+    border-collapse: collapse;
+}
+tbody tr:nth-child(odd) {
+    background: #f0f6fc;
+    /*box-shadow: 0 4px 3px -3px #8a8a8a, 0px -4px 3px -3px #cdcdcd;*/
+}
 
-.hideRow{
-    display: none;
+tr td.noPadding {
+    padding: 0 !important;
+}
+
+tr td div.flow-root {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s, padding 0.3s;
+}
+
+tr.activeRow td >div{
+    max-height: 500px;
+    padding: 0.75rem;
+    transition: max-height 0.6s, padding 0.6s;
+}
+
+.rotated180{
+    transform:rotate(180deg);
+    -webkit-transform:rotate(180deg);
+    -moz-transform:rotate(180deg);
+    -o-transform:rotate(180deg);
+}
+
+.rotatable{
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
 }
 
 [x-cloak] {

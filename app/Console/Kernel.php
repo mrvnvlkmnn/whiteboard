@@ -35,12 +35,7 @@ class Kernel extends ConsoleKernel
         $schedule->command('command:sendMail')->daily()->when(function () {
             $latestEntry = Project::latest()->first();
 
-            if(now()->subDay() < $latestEntry->created_at){
-
-                return true;
-            }
-            return false;
-
+            return now()->subDay() < $latestEntry->created_at;
         });
 
     }

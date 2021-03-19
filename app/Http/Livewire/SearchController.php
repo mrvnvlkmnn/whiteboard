@@ -41,6 +41,18 @@ class SearchController extends Component
         return $output;
     }
 
+    public function formatDate($date) : string{
+        $date = preg_split('#-#', $date);
+
+        if(strlen($date[count($date) - 1]) > 10){
+            $date[count($date) - 1] = str_replace('T00:00:00.000000Z', '', $date[count($date) - 1]);
+        }
+        krsort($date);
+        $date = implode('.', $date);
+
+        return $date;
+    }
+
     public function checkForEloquentWordingForDetail($input) : string{
         switch ($input) {
             case('survey_number'):

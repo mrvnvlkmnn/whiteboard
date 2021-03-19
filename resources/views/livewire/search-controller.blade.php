@@ -88,7 +88,7 @@
                             </thead>
                             <tbody>
                             @foreach ($surveys as $survey)
-                                <tr class="tableColored jsHeader">
+                                <tr class="jsHeader activeRow">
                                     <td>
                                         <x-table-div-tbody>
                                             {{ $survey->survey_number }}
@@ -157,15 +157,15 @@
                                         <a onclick="changeDisplay({{ $survey->id }})" class="cursor ml-1">
                                             <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill="none"
                                                  viewBox="0 0 24 24" stroke="none">
-                                                <path class="origin" id="icon_{{ $survey->id }}" stroke="#C53030"
+                                                <path class="origin rotatable" id="icon_{{ $survey->id }}" stroke="#C53030"
                                                       stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                                       d="M19 13l-7 7-7-7m14-8l-7 7-7-7"/>
                                             </svg>
                                         </a>
                                     </td>
                                 </tr>
-                                <tr id="change_{{ $survey->id }}" style="display: none;">
-                                    <td colspan="7">
+                                <tr id="change_{{ $survey->id }}">
+                                    <td colspan="7" class="noPadding">
                                         <div class="flow-root">
                                             <ul class="-mb-8">
                                                 @foreach($survey->update_list as $keyUpdate => $valueUpdate)
@@ -224,6 +224,8 @@
                                                                         @foreach($valueUpdate['changes'] as $changes => $details)
                                                                             @if($changes == 'mail_sent')
                                                                                 <p class="text-sm text-gray-500">{{ $this->checkForEloquentWordingForDetail($changes) . " wurde am " . date('d.m.Y', $details['new']) . " um " . date('G:i', $details['new']) . " versendet"}}</p>
+                                                                            @elseif($changes == 'fieldstart')
+                                                                                <p class="text-sm text-gray-500">{{ $this->checkForEloquentWordingForDetail($changes) . " wurde vom: \"" . $this->formatDate($details['old']) . "\" zum: \"" . $this->formatDate($details['new']) . "\" geändert"}}</p>
                                                                             @else
                                                                                 <p class="text-sm text-gray-500">{{ $this->checkForEloquentWordingForDetail($changes) . " wurde von: \"" . checkForMultipleEntrys($details['old']) . "\" zu: \"" . checkForMultipleEntrys($details['new']) . "\" geändert"}}</p>
                                                                             @endif
@@ -260,7 +262,8 @@
         let row = document.getElementById("change_" + elementID);
         let icon = document.getElementById("icon_" + elementID);
 
-        row.style.display = row.style.display === 'none' ? 'contents' : 'none';
-        icon.style.transform = icon.style.transform === 'rotate(180deg)' ? '' : 'rotate(180deg)';
+        $(row).toggleClass('activeRow');
+        icon.classList.toggle("rotated180");
+
     }
 </script>
