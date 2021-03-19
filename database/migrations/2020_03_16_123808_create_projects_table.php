@@ -19,11 +19,12 @@ class CreateProjectsTable extends Migration
             $table->json('programmer');
             $table->json('project_manager');
             $table->text('detail');
-            $table->date('feldstart');
+            $table->date('fieldstart');
             $table->text('status');
             $table->timestamps();
             $table->softDeletes();
             $table->timestamp('mail_sent_at')->nullable();
+            $table->json('update_list')->nullable();
         });
     }
 

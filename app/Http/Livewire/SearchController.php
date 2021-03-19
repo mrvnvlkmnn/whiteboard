@@ -15,10 +15,31 @@ class SearchController extends Component
     public $filterQuery;
     public $columnName;
     public $order;
-    public $surveyID;
 
     protected $listeners = ['setParameterForSorting', 'render', 'changeFilterQuery', 'showComponent'];
 
+
+    public function setUpdateTypeName($inputName) : string{
+        switch($inputName){
+            case('project_added');
+                $output = 'Projekt erstellt';
+            break;
+            case('project_deleted');
+                $output = 'Projekt gelöscht';
+            break;
+            case('project_reactivated');
+                $output = 'Projekt wieder hergestellt';
+            break;
+            case('project_updated');
+                $output = 'Projekt bearbeitet';
+            break;
+            case('project_mail_sent');
+                $output = 'Testlink versendet';
+                break;
+        }
+
+        return $output;
+    }
 
     public function checkForEloquentWordingForDetail($input) : string{
         switch ($input) {
@@ -40,7 +61,9 @@ class SearchController extends Component
             case('status'):
                 $output = "Status";
             break;
-
+            case('mail_sent'):
+                $output = "Testlink";
+                break;
         }
         return $output;
     }

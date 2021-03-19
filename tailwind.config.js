@@ -13,6 +13,10 @@ module.exports = {
         textColor: {
             'eae-dark': '#001845',
             'eae-light': '#D4E6F6',
+        },
+        width: {
+            '500': '500px',
+            '748': '748px',
         }
     },
   },

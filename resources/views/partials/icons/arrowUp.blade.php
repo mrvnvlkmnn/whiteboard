@@ -1,0 +1,3 @@
+<svg class="w-{{ $w }} h-{{ $h }}" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20" stroke="{{ $color }}">
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7" />
+</svg>

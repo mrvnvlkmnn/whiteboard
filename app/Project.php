@@ -17,6 +17,7 @@ class Project extends Model
         'fieldstart',
         'status',
         'update_list',
+        'mail_sent_at',
     ];
     protected $casts = [
         'programmer' => 'array',

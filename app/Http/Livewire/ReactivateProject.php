@@ -26,10 +26,7 @@ class ReactivateProject extends Component
     public function reactivateProject(){
         $this->updateList[time()] = ['type' => 'project_reactivated'];
 
-        Project::withTrashed()->where('id', $this->surveyId)->update([
-            'status' => 'Im Feld',
-            'update_list' => $this->updateList,
-        ]);
+        Project::withTrashed()->where('id', $this->surveyId)->update(['update_list' => $this->updateList]);
 
         Project::withTrashed()->where('id', $this->surveyId)->restore();
 

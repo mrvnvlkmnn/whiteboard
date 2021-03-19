@@ -92,11 +92,13 @@ class EditProject extends Component
         return $arr;
     }
 
+
     //updates the project in the db
     public function updateProject()
     {
         $json = $this->project->update_list;
         $changes = $this->checkIfDataChange();
+        #dd($changes);
         if(count($changes['changes']) > 0){
             $json[time()] = $changes;
         }
@@ -110,34 +112,51 @@ class EditProject extends Component
         //validates data
         $this->validate();
 
-        Project::find($this->surveyId)
-            ->update([
-                'survey_number' => $this->survey_number,
-                'programmer' => $this->programmer,
-                'project_manager' => $this->project_manager,
-                'detail' => $this->detail,
-                'fieldstart' => $this->fieldstart,
-                'status' => $this->status,
-                'update_list' => $json,
-            ]);
-
         //checks if status equals 'TL bei PL', if so its sends a mail to the project manager who works on this survey
         if ($this->status == 'TL bei PL' && $this->mail_sent_at == null) {
             //checks if more then 1 project manager is working on the project
             //if so, it puts the second project manager in cc
+
             if (count($this->project_manager) >= 2) {
                 $mail = Mail::to($this->project_manager[0] . '@earsandeyes.com');
                 array_shift($this->project_manager);
-                $mail->cc($this->project_manager);
-                $mail->send(new testlinkMail());
+
+                foreach($this->project_manager as $key => $value){
+                    $mailCC[] = $value . '@earsandeyes.com';
+                }
+                #dd($mailCC);
+                $mail->cc($mailCC);
             } else {
                 $mail = Mail::to($this->project_manager[0] . '@earsandeyes.com');
-                $mail->send(new testlinkMail(Project::find($this->surveyId)));
-                Project::find($this->surveyId)->update([
-                    'mail_sent_at' => now()
-                ]);
             }
+
+            $json[time()] = ['type' => 'project_mail_sent',
+                'changes' => [ 'mail_sent' => [
+                    'old' => 'null',
+                    'new' => time(),
+                ],
+                ]];
+
+            $mail->send(new testlinkMail($this->project));
         }
+
+        $updates = [
+            'survey_number' => $this->survey_number,
+            'programmer' => $this->programmer,
+            'project_manager' => $this->project_manager,
+            'detail' => $this->detail,
+            'fieldstart' => $this->fieldstart,
+            'status' => $this->status,
+            'update_list' => $json,
+        ];
+
+
+        if(!isset($this->mail_sent_at)){
+            $updates['mail_sent_at'] = now();
+        }
+
+        Project::find($this->surveyId)
+            ->update($updates);
 
         //sets the variable to show to window to false,
         //emtis event to parent controller and count-projects controller to render the updated entrys
