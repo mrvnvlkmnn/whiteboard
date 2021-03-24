@@ -75,9 +75,15 @@
                                                 @enderror
                                             </div>
 
+                                            <div class="col-span-6 sm:col-span-6">
+                                                <div class="rounded-md shadow-sm">
+                                                    <textarea rows="3" class="form-textarea mt-1 block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5">{{ $test }}</textarea>
+                                                </div>
+                                            </div>
+
                                             <div class="col-span-6">
                                                 <label for="feldstart_add" class="block text-sm font-medium leading-5 text-gray-700">geplanter Feldstart</label>
-                                                <input id="feldstart_add" wire:model="fieldstart" type="date" value="2021-03-02" class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5">
+                                                <input id="feldstart_add" wire:model="fieldstart" type="date" value="{{ $fieldstart }}" class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5">
                                                 @error('fieldstart')
                                                     <div class="m:inline ml-1 bg-pink-100 rounded-full mr-5 mt-2 py-0.5 flex items-center text-xs leading-4 tracking-wide uppercase font-semibold flex-shrink-0">
                                                         <span class="text-pink-700 ml-4">{{ $message }}</span>

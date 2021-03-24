@@ -19,7 +19,8 @@
         "laravel/tinker": "^2.0",
         "laravel/ui": "^2.0",
         "livewire/livewire": "^2.4",
-        "pusher/pusher-php-server": "~3.0"
+        "pusher/pusher-php-server": "~3.0",
+        "ext-mysqli": "*"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.3",

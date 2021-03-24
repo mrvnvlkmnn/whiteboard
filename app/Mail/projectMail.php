@@ -9,18 +9,18 @@ use Illuminate\Queue\SerializesModels;
 
 class projectMail extends Mailable
 {
-    use Queueable, SerializesModels;
+    public $project;
 
-    public $projects;
+    use Queueable, SerializesModels;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($projects)
+    public function __construct($project)
     {
-        $this->projects = $projects;
+        $this->project = $project;
     }
 
     /**
@@ -30,6 +30,6 @@ class projectMail extends Mailable
      */
     public function build()
     {
-        return $this->markdown('emails.testlinkMail');
+        return $this->markdown('emails.projectMail');
     }
 }

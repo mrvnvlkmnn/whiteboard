@@ -4,6 +4,7 @@ namespace App\Http\Livewire;
 
 use App\Project;
 use App\User;
+use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 
 class AddProject extends Component
@@ -18,6 +19,7 @@ class AddProject extends Component
     public $employeesIT;
     public $employeesMafo;
     public $update_list = [];
+    public $test;
 
     protected $listeners = ['showAddProject'];
     protected $rules = [
@@ -43,7 +45,7 @@ class AddProject extends Component
         $this->showAddProject = true;
         $this->survey_number = "Q" . substr(date("Y"), 2, 2) . "0XXde";
         $this->fieldstart = date("Y-n-j", strtotime('+1 day'));
-        //dd($this->feldstart);
+        #dd(date("Y-n-j", strtotime('+1 day')));
         $this->dispatchBrowserEvent('checkSelect2');
     }
 
@@ -60,8 +62,13 @@ class AddProject extends Component
         #dd($this->employees);
     }
 
-    function setUpdateList(){
+    function getUsersFromIntranet(): string
+    {
+        $connect = new \mysqli('www.trendmonitor.de', 'eaedbmafouser', 'UcQd!fdioMpWer', 'eaepanel');
+        $connect->query('SELECT * FROM intranet_user');
 
+        dd($connect);
+        #return $this->test = DB::connection('mysql')->table('users')->get();
     }
 
     //adds a project to the db
@@ -107,6 +114,7 @@ class AddProject extends Component
     public function render()
     {
         $this->getEmployees();
+        $this->getUsersFromIntranet();
         return view('livewire.add-project');
     }
 }

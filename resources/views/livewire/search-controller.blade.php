@@ -65,10 +65,10 @@
                                 </th>
                                 <th width="250px">
                                     <x-table-div-theader textToDisplay="Details">
-                                        <x-sorting nameForSorting="details" sortingOrder="asc" margin="ml-2">
+                                        <x-sorting nameForSorting="detail" sortingOrder="asc" margin="ml-2">
                                             @include('partials.icons.arrowDown', ['color' => 'black', 'w' => 4, 'h' => 4])
                                         </x-sorting>
-                                        <x-sorting nameForSorting="details" sortingOrder="desc">
+                                        <x-sorting nameForSorting="detail" sortingOrder="desc">
                                             @include('partials.icons.arrowUp', ['color' => 'black', 'w' => 4, 'h' => 4])
                                         </x-sorting>
                                     </x-table-div-theader>
