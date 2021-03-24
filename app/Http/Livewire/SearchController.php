@@ -112,7 +112,7 @@ class SearchController extends Component
 
     public function render()
     {
-
+        dd(\DB::connection('intranet')->table('intranet_user')->get());
         $searchQuery = "%" . strtoupper($this->search) . "%";
 
         $searchFunction = function ($query) use ($searchQuery) {

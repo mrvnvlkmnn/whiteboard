@@ -15,6 +15,7 @@ class sorting extends Component
      * Create a new component instance.
      *
      * @param $nameForSorting
+     * @param $sortingOrder
      * @param string $margin
      */
     public function __construct($nameForSorting, $sortingOrder, $margin = 'ml-0')
