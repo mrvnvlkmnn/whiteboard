@@ -1,5 +1,5 @@
 <div class="flex items-center h-10">
-    <div class="ml-4">
+    <div>
         <span
             class="relative inline-block px-3 py-1 font-semibold text-{{ $color }}-900 leading-tight">
             <span aria-hidden=""
