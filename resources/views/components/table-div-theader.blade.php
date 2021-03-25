@@ -1,4 +1,4 @@
 <div class="flex items-center">
-    <div>{{ $textToDisplay }}</div>
+    <div style="padding-left: 0.75rem; padding-right: 0.75rem">{{ $textToDisplay }}</div>
     {{ $slot }}
 </div>
