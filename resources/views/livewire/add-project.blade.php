@@ -36,8 +36,8 @@
                                             <div wire:ignore class="col-span-6 sm:col-span-6">
                                                 <label for="programmer_add" class="block text-sm font-medium leading-5 text-gray-700">Programmierer</label>
                                                 <select wire:model="programmer" class="select2 form-control" multiple name="programmer_add[]" id="programmer_add">
-                                                    @foreach($employeesIT as $employeeIT)
-                                                        <option value="{{ $employeeIT->abbreviation }}">{{ $employeeIT->name }}</option>
+                                                    @foreach($users as $user)
+                                                        <option value="{{ $user->nick }}">{{ $user->vorname . " " . $user->nachname }}</option>
                                                     @endforeach
                                                 </select>
                                                 @error('programmer')
@@ -51,8 +51,8 @@
                                                 <label for="project_manager_add" class="block text-sm font-medium leading-5 text-gray-700">Projektleiter</label>
                                                 <div class="relative">
                                                     <select wire:model="project_manager" class="select2 form-control" multiple id="project_manager_add">
-                                                        @foreach($employeesMafo as $employeeMafo)
-                                                            <option value="{{ $employeeMafo->abbreviation }}">{{ $employeeMafo->name }}</option>
+                                                        @foreach($users as $user)
+                                                            <option value="{{ $user->nick }}">{{ $user->vorname . " " . $user->nachname }}</option>
                                                         @endforeach
                                                     </select>
                                                 </div>
@@ -73,12 +73,6 @@
                                                         <span class="text-pink-700 ml-4">{{ $message }}</span>
                                                     </div>
                                                 @enderror
-                                            </div>
-
-                                            <div class="col-span-6 sm:col-span-6">
-                                                <div class="rounded-md shadow-sm">
-                                                    <textarea rows="3" class="form-textarea mt-1 block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5">{{ $test }}</textarea>
-                                                </div>
                                             </div>
 
                                             <div class="col-span-6">

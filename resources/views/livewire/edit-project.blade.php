@@ -32,8 +32,8 @@
                                             <div wire:ignore class="col-span-6 sm:col-span-6">
                                                 <label for="programmer" class="block text-sm font-medium leading-5 text-gray-700">Programmierer</label>
                                                 <select wire:model.lazy="programmer" class="select2 form-control" multiple id="programmer">
-                                                    @foreach(config('employees.programmer') as $key => $value)
-                                                        <option value="{{ $key }}" {{ in_array($key, old('programmer') ?? [$programmer] ) ? 'selected' : '' }}>{{ $value }}</option>
+                                                    @foreach($users as $user)
+                                                        <option value="{{ $user->nick }}" {{ in_array($user->nick, old('programmer') ?? [$programmer] ) ? 'selected' : '' }}>{{ $user->vorname . " " . $user->nachname }}</option>
                                                     @endforeach
                                                 </select>
                                             </div>
@@ -42,13 +42,12 @@
                                                 <label for="project_manager" class="block text-sm font-medium leading-5 text-gray-700">Projektleiter</label>
                                                 <div class="relative">
                                                     <select wire:model.lazy="project_manager" class="select2 form-control" multiple id="project_manager">
-                                                        @foreach(config('employees.project_manager') as $key => $value)
-                                                            <option value="{{ $key }}" {{ in_array($key, old('project_manager') ?? [$project_manager] ) ? 'selected' : '' }}>{{ $value }}</option>
+                                                        @foreach($users as $user)
+                                                            <option value="{{ $user->nick }}" {{ in_array($user->nick, old('project_manager') ?? [$project_manager] ) ? 'selected' : '' }}>{{ $user->vorname . " " . $user->nachname }}</option>
                                                         @endforeach
                                                     </select>
                                                 </div>
                                             </div>
-
                                             <div class="col-span-6 sm:col-span-6">
                                                 <label for="details" class="block text-sm font-medium leading-5 text-gray-700">Details</label>
                                                 <div class="rounded-md shadow-sm">

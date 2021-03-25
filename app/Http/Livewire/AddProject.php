@@ -16,10 +16,8 @@ class AddProject extends Component
     public $detail;
     public $fieldstart;
     public $status = 'Kick-Off';
-    public $employeesIT;
-    public $employeesMafo;
     public $update_list = [];
-    public $test;
+    public $users;
 
     protected $listeners = ['showAddProject'];
     protected $rules = [
@@ -55,20 +53,9 @@ class AddProject extends Component
         $this->showAddProject = false;
     }
 
-    private function getEmployees(){
-        $this->employeesIT = User::where('department', 'LIKE', 'IT')->get();
-        $this->employeesMafo = User::where('department', 'LIKE', 'Mafo')->get();
-
-        #dd($this->employees);
-    }
-
-    function getUsersFromIntranet(): string
+    function getUsersFromIntranet(): object
     {
-        $connect = new \mysqli('www.trendmonitor.de', 'eaedbmafouser', 'UcQd!fdioMpWer', 'eaepanel');
-        $connect->query('SELECT * FROM intranet_user');
-
-        dd($connect);
-        #return $this->test = DB::connection('mysql')->table('users')->get();
+        return $this->users = DB::connection('intranet')->table('intranet_user')->where('status', 'NOT LIke', 'deleted')->get();
     }
 
     //adds a project to the db
@@ -113,7 +100,6 @@ class AddProject extends Component
 
     public function render()
     {
-        $this->getEmployees();
         $this->getUsersFromIntranet();
         return view('livewire.add-project');
     }

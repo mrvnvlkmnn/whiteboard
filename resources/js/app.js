@@ -6,7 +6,4 @@
 
 import 'alpinejs';
 require('./bootstrap');
-require('select2')
-
-
-
+require('select2');

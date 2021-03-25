@@ -5,6 +5,7 @@ namespace App\Http\Livewire;
 use App\Project;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 use phpDocumentor\Reflection\Types\Boolean;
 
@@ -15,6 +16,7 @@ class SearchController extends Component
     public $filterQuery;
     public $columnName;
     public $order;
+    public $users;
 
     protected $listeners = ['setParameterForSorting', 'render', 'changeFilterQuery', 'showComponent'];
 
@@ -112,7 +114,6 @@ class SearchController extends Component
 
     public function render()
     {
-        dd(\DB::connection('intranet')->table('intranet_user')->get());
         $searchQuery = "%" . strtoupper($this->search) . "%";
 
         $searchFunction = function ($query) use ($searchQuery) {

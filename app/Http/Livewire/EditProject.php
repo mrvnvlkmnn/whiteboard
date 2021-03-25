@@ -4,6 +4,7 @@ namespace App\Http\Livewire;
 
 use App\Mail\testlinkMail;
 use App\Project;
+use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 use Illuminate\Support\Facades\Mail;
 use Carbon\Carbon;
@@ -21,6 +22,7 @@ class EditProject extends Component
     public $status;
     public $mail_sent_at;
     public $update_list;
+    public $users;
 
     public $showEditProject = false;
 
@@ -43,11 +45,15 @@ class EditProject extends Component
         $this->showEditProject = false;
     }
 
+    public function setUsers()
+    {
+        $this->users = DB::connection('intranet')->table('intranet_user')->where('status', 'NOT LIKE', 'deleted')->get();
+    }
+
     //sends the id to identify the project to edit
     //sets all the variables to show in the edit window
     public function sendSurveyId($surveyId)
     {
-
         $this->surveyId = $surveyId;
 
         #set programmmer, project_manager, etc.
@@ -60,6 +66,7 @@ class EditProject extends Component
         $this->fieldstart = $this->project->fieldstart->format('Y-m-d');
         $this->status = $this->project->status;
         $this->mail_sent_at = $this->project->mail_sent_at;
+
     }
 
     private function checkIfDataChange(): array
@@ -168,6 +175,7 @@ class EditProject extends Component
 
     public function render()
     {
+        $this->setUsers();
         return view('livewire.edit-project');
     }
 }
