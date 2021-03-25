@@ -24,7 +24,7 @@
                                     <div class="px-4 pb-5 pt-3 bg-white sm:p-6">
                                         <div class="grid grid-cols-6 gap-6">
                                             <div class="col-span-6 sm:col-span-6">
-                                                <label for="survey_number_add" class="block text-sm font-medium leading-5 text-gray-700">Studien-Nummer</label>
+                                                <label for="survey_number_add" class="block text-sm font-medium leading-5 text-gray-700">Studiennummer</label>
                                                 <input wire:model="survey_number" id="survey_number_add" value="{{ $survey_number }}" class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5">
                                                 @error('survey_number')
                                                     <div class="m:inline ml-1 bg-pink-100 rounded-full mr-5 mt-2 py-0.5 flex items-center text-xs leading-4 tracking-wide uppercase font-semibold flex-shrink-0">
@@ -76,7 +76,7 @@
                                             </div>
 
                                             <div class="col-span-6">
-                                                <label for="feldstart_add" class="block text-sm font-medium leading-5 text-gray-700">geplanter Feldstart</label>
+                                                <label for="feldstart_add" class="block text-sm font-medium leading-5 text-gray-700">Geplanter Feldstart</label>
                                                 <input id="feldstart_add" wire:model="fieldstart" type="date" value="{{ $fieldstart }}" class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5">
                                                 @error('fieldstart')
                                                     <div class="m:inline ml-1 bg-pink-100 rounded-full mr-5 mt-2 py-0.5 flex items-center text-xs leading-4 tracking-wide uppercase font-semibold flex-shrink-0">

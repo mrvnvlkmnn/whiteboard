@@ -64,7 +64,7 @@ class SearchController extends Component
                 $output = "Programmierer";
             break;
             case('project_manager'):
-                $output = "Projekt-Leiter";
+                $output = "Projektleiter";
             break;
             case('detail'):
                 $output = "Details";
