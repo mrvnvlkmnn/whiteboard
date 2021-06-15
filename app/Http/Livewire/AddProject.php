@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Events\projectCreated;
 use App\Project;
 use App\User;
 use Illuminate\Support\Facades\DB;
@@ -61,18 +62,6 @@ class AddProject extends Component
     //adds a project to the db
     public function addProject()
     {
-        /*
-        $history = [
-            'xxx-11:00' => [
-                'type' => 'project_added',
-            ],
-            'xxx-12:00' => [
-                'type' => 'project_updated',
-                'changes' => [
-                    'description' => 'blablabla...'
-                ],
-            ],
-        ];*/
 
         //checks if data is valid
         if ($this->validate()) {
@@ -90,6 +79,7 @@ class AddProject extends Component
 
                 $this->showAddProject = false;
                 $this->emit('render');
+                event(new projectCreated);
                 $this->emitTo('count-projects', 'render');
 
             } else{

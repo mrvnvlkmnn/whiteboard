@@ -256,6 +256,7 @@
     @livewire('reactivate-project')
     @livewire('edit-project')
     @livewire('add-project')
+
 </div>
 <script>
     function changeDisplay(elementID) {

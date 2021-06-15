@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Events\projectCreated;
 use App\Mail\testlinkMail;
 use App\Project;
 use Illuminate\Support\Facades\DB;
@@ -26,7 +27,7 @@ class EditProject extends Component
 
     public $showEditProject = false;
 
-    protected $listeners = ['sendSurveyId', 'showEditProject'];
+    protected $listeners = ['sendSurveyId', 'showEditProject', 'echo:home, projectCreated' => 'sayName()'];
 
     //defines rules for validation
     protected $rules = [
@@ -48,6 +49,11 @@ class EditProject extends Component
     public function setUsers()
     {
         $this->users = DB::connection('intranet')->table('intranet_user')->where('status', 'NOT LIKE', 'deleted')->get();
+    }
+
+    public function sayName()
+    {
+        dd("test");
     }
 
     //sends the id to identify the project to edit
@@ -162,6 +168,7 @@ class EditProject extends Component
         //emtis event to parent controller and count-projects controller to render the updated entrys
         $this->showEditProject = false;
         $this->emitUp('render');
+        event(new projectCreated);
         $this->emitTo('count-projects', 'render');
 
     }

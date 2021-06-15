@@ -25,6 +25,9 @@ class Project extends Model
         'fieldstart' => 'date',
         'update_list' => 'array',
     ];
+    /**
+     * @var mixed
+     */
 
     use SoftDeletes;
 

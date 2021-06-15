@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Events\projectCreated;
 use App\Project;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\App;
@@ -18,7 +19,7 @@ class SearchController extends Component
     public $order;
     public $users;
 
-    protected $listeners = ['setParameterForSorting', 'render', 'changeFilterQuery', 'showComponent'];
+    protected $listeners = ['setParameterForSorting', 'render', 'changeFilterQuery', 'showComponent', 'emitEvent', 'echo:refreshProjects,projectCreated' => 'refreshProject'];
 
 
     public function setUpdateTypeName($inputName) : string{
@@ -53,6 +54,11 @@ class SearchController extends Component
         $date = implode('.', $date);
 
         return $date;
+    }
+
+    public function refreshProject()
+    {
+        $this->surveys = $this->surveys->fresh();
     }
 
     public function checkForEloquentWordingForDetail($input) : string{

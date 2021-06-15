@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Events\projectCreated;
 use App\Project;
 use Livewire\Component;
 
@@ -33,6 +34,7 @@ class ReactivateProject extends Component
         $this->showReactivateProject = false;
 
         $this->emitUp('render');
+        event(new projectCreated);
         $this->emitTo('count-projects', 'render');
     }
 
