@@ -58,6 +58,10 @@ tr.activeRow td >div{
     display: none;
 }
 
+.noScrollbar::-webkit-scrollbar{
+    display: none;
+}
+
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 

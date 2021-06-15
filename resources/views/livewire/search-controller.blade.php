@@ -166,7 +166,7 @@
                                 </tr>
                                 <tr id="change_{{ $survey->id }}">
                                     <td colspan="7" class="noPadding">
-                                        <div class="flow-root">
+                                        <div class="flow-root overflow-auto noScrollbar">
                                             <ul class="-mb-8">
                                                 @foreach($survey->update_list as $keyUpdate => $valueUpdate)
                                                 <li>
